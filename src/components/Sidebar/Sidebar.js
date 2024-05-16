@@ -20,8 +20,6 @@ import { useLocation, NavLink } from "react-router-dom";
 
 import { Nav } from "react-bootstrap";
 
-import logo from "assets/img/reactlogo.png";
-
 function Sidebar({ color, image, routes }) {
   const location = useLocation();
   const activeRoute = (routeName) => {
@@ -41,11 +39,11 @@ function Sidebar({ color, image, routes }) {
             className="simple-text logo-mini mx-1"
           >
             <div className="logo-img">
-              <img src={require("assets/img/reactlogo.png")} alt="..." />
+              <img src={require("assets/img/HSB_Logo_Schwarz_sRGB.png")} alt="..." />
             </div>
           </a>
           <a className="simple-text">
-            HSB Dashboard
+             
           </a>
         </div>
         <Nav>

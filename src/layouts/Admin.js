@@ -25,12 +25,10 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
 
-import sidebarImage from "assets/img/sidebar-3.jpg";
-
 function Admin() {
-  const [image, setImage] = React.useState(sidebarImage);
+  //const [image, setImage] = React.useState(sidebarImage);
   const [color, setColor] = React.useState("black");
-  const [hasImage, setHasImage] = React.useState(true);
+  const [hasImage, setHasImage] = React.useState(false);
   const location = useLocation();
   const mainPanel = React.useRef(null);
   const getRoutes = (routes) => {

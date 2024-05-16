@@ -169,7 +169,7 @@ body > .navbar-collapse{
     }
 
     .logo{
-        padding: $navbar-padding-a;
+        padding: 1%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
         p{
@@ -203,8 +203,8 @@ body > .navbar-collapse{
         overflow: hidden;
 
         img{
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
         }
     }
 
@@ -221,42 +221,44 @@ body > .navbar-collapse{
     }
 
     &:before{
-        opacity: .33;
-        background: #000000;
+        opacity: 1;
+        //background: #000000;
+        background-color: rgb(50, 180, 200);
     }
 
     &:after{
-       @include icon-gradient($new-purple, $purple-color-bottom);
+       //@include icon-gradient($new-purple, $purple-color-bottom);
+       background-color: rgb(50, 180, 200);
        z-index: 3;
        opacity: 1;
     }
 
     &[data-image]:after,
     &.has-image:after{
-        opacity: .77;
+        opacity: 1;
     }
 
-    &[data-color="black"]:after{
-        @include icon-gradient($default-states-color, $default-states-color);
-    }
-    &[data-color="blue"]:after{
-        @include icon-gradient($new-dark-blue, $blue-color-bottom);
-    }
-    &[data-color="azure"]:after{
-        @include icon-gradient($new-blue, $azure-color-bottom);
-    }
-    &[data-color="green"]:after{
-        @include icon-gradient($new-green, $green-color-bottom);
-    }
-    &[data-color="orange"]:after{
-        @include icon-gradient($new-orange, $orange-color-bottom);
-    }
-    &[data-color="red"]:after{
-        @include icon-gradient($new-red, $red-color-bottom);
-    }
-    &[data-color="purple"]:after{
-        @include icon-gradient($new-purple, $purple-color-bottom);
-    }
+    // &[data-color="black"]:after{
+    //     //@include icon-gradient($default-states-color, $default-states-color);
+    // }
+    // &[data-color="blue"]:after{
+    //     @include icon-gradient($new-dark-blue, $blue-color-bottom);
+    // }
+    // &[data-color="azure"]:after{
+    //     @include icon-gradient($new-blue, $azure-color-bottom);
+    // }
+    // &[data-color="green"]:after{
+    //     @include icon-gradient($new-green, $green-color-bottom);
+    // }
+    // &[data-color="orange"]:after{
+    //     @include icon-gradient($new-orange, $orange-color-bottom);
+    // }
+    // &[data-color="red"]:after{
+    //     @include icon-gradient($new-red, $red-color-bottom);
+    // }
+    // &[data-color="purple"]:after{
+    //     @include icon-gradient($new-purple, $purple-color-bottom);
+    // }
 }
 
 
