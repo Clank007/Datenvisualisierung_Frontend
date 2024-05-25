@@ -10,9 +10,9 @@ Depending on what you are making, it can be a good idea to include screenshots o
 
 ## Installation
 1. Aktuelle Version von Node.js installieren
-2. Im Verzeichnis `frontend` folgende Befehle ausführen:
+2. Im Verzeichnis des Repos folgende Befehle ausführen:
 ```
-npm install --force
+npm install
 ```
 ```
 npm start
