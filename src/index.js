@@ -18,9 +18,7 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path="/admin/*" element={<Admin />} />
-      {/* <Route path="/admin/dashboard/*" element={<Admin />} />
-      <Route path="/admin/dashboard2/*" element={<Admin />} />
-      <Route path="/admin/dashboard3/*" element={<Admin />} /> */}
+      <Route path="/admin" element={<Navigate to="/admin/dashboard1" />} />
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
     </Routes>

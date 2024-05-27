@@ -16,16 +16,16 @@ const Login = () => {
       <Row className="w-100">
         <Col xs={12} sm={8} md={6} lg={4} className="mx-auto">
           <div className="login-form-container p-4 rounded">
-            <h2 className="text-center mb-4">Login</h2>
+            <h2 className="text-center mb-4">Anmelden</h2>
             <Form>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Label>E-Mail</Form.Label>
+                <Form.Control type="email" placeholder="E-Mail" />
               </Form.Group>
 
               <Form.Group className="mt-3" controlId="formBasicPassword">
                 <Form.Label>Passwort</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Passwort" />
               </Form.Group>
 
               <Button variant="primary" className="w-100 mt-3 custom-button" onClick={handleLogin}>
