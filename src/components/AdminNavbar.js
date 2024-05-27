@@ -68,7 +68,7 @@ function Header() {
               <Nav.Link
                 className="m-0"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => console.log('log in')}
               >
                 <span className="no-icon">Log in</span>
               </Nav.Link>

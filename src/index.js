@@ -11,6 +11,7 @@ import "./assets/css/demo.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Admin from "./layouts/Admin.js";
+import Login from './layouts/Login.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,7 +21,8 @@ root.render(
       {/* <Route path="/admin/dashboard/*" element={<Admin />} />
       <Route path="/admin/dashboard2/*" element={<Admin />} />
       <Route path="/admin/dashboard3/*" element={<Admin />} /> */}
-      <Route path="/" element={<Navigate to="/admin/dashboard1" />} />
+      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   </BrowserRouter>
 );

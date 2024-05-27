@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Globale Variablen für Farben. Nutzen per: var(<name>) (inkl. '--') */
+:root {
+  --cd_blau: rgb(10 , 85 , 140);
+  --cd_tuerkis: rgb(50 , 180 , 200);
+  --cd_gruen: rgb(0 , 145 , 90);
+  --cd_hellgruen: rgb(110 , 165 , 60);
+  --cd_gelb: rgb(250 , 190 , 0);
+  --cd_orange: rgb(240 , 120 , 35);
+  --cd_rot: rgb(195 , 5 , 50);
+  --cd_violett: rgb(120 , 100 , 165);
+}

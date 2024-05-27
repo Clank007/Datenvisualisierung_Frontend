@@ -1,0 +1,24 @@
+.login-container {
+    background-image: url('../img/01_Blau-Tuerkis.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  
+  .login-form-container {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .custom-button {
+    border: 2px solid var(--cd_blau); /* Outline color */
+    background-color: transparent; /* Transparent background */
+    color: var(--cd_blau); /* Text color */
+  }
+  
+  .custom-button:hover {
+    border: 2px solid var(--cd_blau); /* Outline color */
+    background-color: var(--cd_blau); /* Fill color on hover */
+    color: white; /* Text color on hover */
+  }

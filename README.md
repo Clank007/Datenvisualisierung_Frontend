@@ -15,7 +15,7 @@ Depending on what you are making, it can be a good idea to include screenshots o
 npm install
 ```
 ```
-npm start
+npm run dev
 ```
 3. Die Seite sollte sich automatisch öffnen. Falls nicht, öffne die die in der cmd gezeigte localhost URL. 
 
