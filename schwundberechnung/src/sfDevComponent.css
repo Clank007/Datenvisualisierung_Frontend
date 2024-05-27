@@ -1,0 +1,19 @@
+.sfDevContainer {
+    display: flex;
+    width: 100%;
+  }
+  
+.sfDevChart {
+  width: 80%;
+  padding: 10px;
+}
+  
+.sfDevFilter {
+  width: 20%;
+  padding: 10px;
+  border-left: 1px solid #ccc;
+}
+
+.sfDevFilterLabel {
+  padding-bottom: 20px;
+}
