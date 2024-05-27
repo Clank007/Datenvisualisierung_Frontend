@@ -22,7 +22,7 @@ function Sidebar({ color, image, routes }) {
             className="simple-text logo-mini mx-1"
           >
             <div className="logo-img">
-              <img src={require("../assets/img/HSB_Logo_Schwarz_sRGB.png")} alt="..." />
+              <img src={require("../assets/img/HSB_Logo_Weiss_sRGB.png")} alt="..." />
             </div>
           </a>
         </div>

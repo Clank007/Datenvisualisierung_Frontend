@@ -6,7 +6,7 @@ import '../assets/css/login.css';
 const Login = () => {
     const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = () => {
     // keine Authentifizierung nötig im Prototypen, einfaches Redirect
     navigate('/admin/dashboard1');
   };

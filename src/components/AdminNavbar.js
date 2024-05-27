@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "../routes.js";
@@ -26,6 +26,14 @@ function Header() {
     }
     return "Brand";
   };
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // keine Authentifizierung nötig im Prototypen, einfaches Redirect
+    navigate('/login');
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -68,9 +76,9 @@ function Header() {
               <Nav.Link
                 className="m-0"
                 href="#pablo"
-                onClick={(e) => console.log('log in')}
+                onClick={handleLogout}
               >
-                <span className="no-icon">Log in</span>
+                <span className="no-icon">Abmelden</span>
               </Nav.Link>
             </Nav.Item>
           </Nav>

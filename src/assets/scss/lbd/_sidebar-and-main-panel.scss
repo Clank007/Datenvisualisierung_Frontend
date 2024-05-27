@@ -220,45 +220,28 @@ body > .navbar-collapse{
         z-index: 2;
     }
 
+    // &:before{
+    //     opacity: 1;
+    //     background-color: var(--cd_tuerkis);
+    // }
+
+    // &:after{
+    //    background-color: var(--cd_tuerkis);
+    //    z-index: 3;
+    //    opacity: 1;
+    // }
+
     &:before{
         opacity: 1;
-        //background: #000000;
-        background-color: rgb(50, 180, 200);
+        background-color: var(--cd_tuerkis);
     }
 
     &:after{
-       //@include icon-gradient($new-purple, $purple-color-bottom);
-       background-color: rgb(50, 180, 200);
-       z-index: 3;
-       opacity: 1;
+        background-image: url('../../img/01_Blau-Tuerkis.jpg');
+        background-size: 1500%; /* cover; /* Ensure the image covers the container */
+        background-position: 0% 90%; /* Adjust the visible section of the image */
+        background-repeat: no-repeat; /* Prevent the background from repeating */
     }
-
-    &[data-image]:after,
-    &.has-image:after{
-        opacity: 1;
-    }
-
-    // &[data-color="black"]:after{
-    //     //@include icon-gradient($default-states-color, $default-states-color);
-    // }
-    // &[data-color="blue"]:after{
-    //     @include icon-gradient($new-dark-blue, $blue-color-bottom);
-    // }
-    // &[data-color="azure"]:after{
-    //     @include icon-gradient($new-blue, $azure-color-bottom);
-    // }
-    // &[data-color="green"]:after{
-    //     @include icon-gradient($new-green, $green-color-bottom);
-    // }
-    // &[data-color="orange"]:after{
-    //     @include icon-gradient($new-orange, $orange-color-bottom);
-    // }
-    // &[data-color="red"]:after{
-    //     @include icon-gradient($new-red, $red-color-bottom);
-    // }
-    // &[data-color="purple"]:after{
-    //     @include icon-gradient($new-purple, $purple-color-bottom);
-    // }
 }
 
 
