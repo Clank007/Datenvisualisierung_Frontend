@@ -25,12 +25,6 @@ ChartJS.register(
 );
 
 const calcData = (sfData: SchwundfaktorFormat) => {
-  const diffData = sfData.faktor.map((faktor, index) => {
-    // Shift all data 1 to the right except the first element
-    if (index !== 0) return sfData.faktor[index-1];
-    return faktor;
-  });
-
   const preppedData = {
     labels: sfData.years,
     datasets: [
@@ -100,7 +94,6 @@ const options = (sfData: SchwundfaktorFormat) => {
 };
 
 const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
-  const data = calcData(sfData);
   return (
       <Line 
         data={calcData(sfData)}

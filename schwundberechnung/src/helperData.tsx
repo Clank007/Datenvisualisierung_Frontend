@@ -1,9 +1,9 @@
 import SchwundfaktorFormat from "./helperTypes";
 
-const schwundfaktorDaten : SchwundfaktorFormat[] = [
+export const schwundfaktorDaten : SchwundfaktorFormat[] = [
     new SchwundfaktorFormat( "ATMECH B.Eng.", [2020, 2021, 2022, 2023, 2024], [ 1.2780, 1.3910, 1.3622, 1.3365, 1.3411 ]),
-    new SchwundfaktorFormat( "ATMEI", [2020, 2021, 2022, 2023, 2024], [ 0.0, 0.0, 1.3622, 1.3365, 1.3411]),
-    new SchwundfaktorFormat( "ATMEI-dual", [2020, 2021, 2022, 2023, 2024], [ 0.0, 0.0, 0.0, 0.0, 1.1392]),
+    new SchwundfaktorFormat( "ATMEI", [2020, 2021, 2022, 2023, 2024], [ null, null, 1.3622, 1.3365, 1.3411]),
+    new SchwundfaktorFormat( "ATMEI-dual", [2020, 2021, 2022, 2023, 2024], [ null, null, null, null, 1.1392]),
     new SchwundfaktorFormat( "ISS B.Sc. Stud.Anf. (gemittelt/gewichtet)", [2020, 2021, 2022, 2023, 2024], [ 1.5200, 1.5200, 1.4963, 1.5228, 1.5488]),
     new SchwundfaktorFormat( "TI", [2020, 2021, 2022, 2023, 2024], [ 1.6129, 1.6862, 1.6073, 1.6304, 1.6919]),
     new SchwundfaktorFormat( "ISTI", [2020, 2021, 2022, 2023, 2024], [ 2.0258, 2.0040, 1.8808, 1.7050, 2.0035]),
@@ -16,7 +16,27 @@ const schwundfaktorDaten : SchwundfaktorFormat[] = [
     new SchwundfaktorFormat( "TAP B.Sc.", [2020, 2021, 2022, 2023, 2024], [ 1.5329, 1.5374, 1.5088, 1.4674, 1.5309]),
     new SchwundfaktorFormat( "KSS M.Sc.", [2020, 2021, 2022, 2023, 2024], [ 1.1087, 1.1508, 1.0931, 1.0246, 1.0479]),
     new SchwundfaktorFormat( "MScEE M.Sc.", [2020, 2021, 2022, 2023, 2024], [ 1.0743, 1.0548, 1.0146, 1.0865, 1.0681]),
-    new SchwundfaktorFormat( "EMSS M.Sc.", [2020, 2021, 2022, 2023, 2024], [ 0.0, 0.0, 0.0, 1.1150, 1.1150]),
+    new SchwundfaktorFormat( "EMSS M.Sc.", [2020, 2021, 2022, 2023, 2024], [ null, null, null, 1.1150, 1.1150]),
 ];
 
-export default schwundfaktorDaten;
+export const StudierendenVerlauf2020 = [
+    {
+        course: "DSI",
+        semesters: ["1. FS", "2. FS", "3. FS", "4. FS", "5. FS", "6. FS", "7. FS", "8. FS"],
+        meanSuccess: [1.0000, 0.9667, 0.9554, 0.9558, 0.8784, 1.0000, 0.9524, 1.0037],
+        kohorten: [
+            { 
+                kohorte: "WiSe15/16",
+                netStudents: [10, 9, 9, 9, 7, 7, 6, 6],
+            },
+            {
+                kohorte: "WiSe16/17",
+                netStudents: [21, 21, 19, 18, 17, 17, 17, 18],
+            },
+            {
+                kohorte: "WiSe17/18",
+                netStudents: [26, 26, 25, 23, 21, 21, 21, 20],
+            },
+        ],
+    },
+];

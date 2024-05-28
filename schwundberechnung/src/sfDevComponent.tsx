@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import Select, { ActionMeta } from 'react-select';
-import schwundfaktorDaten from './helperData';
+import { schwundfaktorDaten } from './helperData';
 import sfDevChart from './sfDevChart';
 import { Option } from 'react-select/src/filters';
-import SchwundfaktorFormat from './helperTypes';
 import './sfDevComponent.css';
 
 const SfDevComponent = () => {
   const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[0]);
-  const [filterVisible, setFilterVisible] = useState(true);
 
   const sfDevFilterOptions = schwundfaktorDaten.map((course, index) => ({
     value: String(index),
@@ -25,15 +23,9 @@ const SfDevComponent = () => {
 
   const chartData = sfDevChart({ sfData: selectedCourse });
 
-  function toggleFilterVisibility() {
-    return () => {
-      setFilterVisible(!filterVisible);
-    };
-  }
-
   return (
     <div className='sfDevContainer'>
-      <div className={`sfDevChart ${filterVisible ? '' : 'expanded'}`}>
+      <div className='sfDevChart'>
         {chartData}
       </div>
       <div className='sfDevFilter'>
