@@ -1,4 +1,5 @@
 import React from "react";
+import SfStudentsComponent from "../charts/sfStudentsComponent";
 // react-bootstrap components
 import {
   Badge,
@@ -44,6 +45,19 @@ function Dashboard() {
                   Update Now
                 </div>
               </Card.Footer>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="10">
+            <Card className="card-chart">
+              <Card.Body>
+                <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title>
+                <div>
+                  <SfStudentsComponent></SfStudentsComponent>
+                  {/* {SfStudentsComponent()} */}
+                </div>
+              </Card.Body>
             </Card>
           </Col>
         </Row>

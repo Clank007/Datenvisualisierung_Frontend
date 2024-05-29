@@ -1,0 +1,19 @@
+.sfCoursesContainer {
+    display: flex;
+    width: 100%;
+  }
+  
+.sfCoursesChart {
+  width: 80%;
+  padding: 10px;
+}
+  
+.sfCoursesFilter {
+  width: 20%;
+  padding: 10px;
+  border-left: 1px solid #ccc;
+}
+
+.sfCoursesFilterLabel {
+  padding-bottom: 20px;
+}
