@@ -15,6 +15,8 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
+import SfDevComponent from "../charts/sfDevComponent";
+import SfCoursesComponent from "../charts/sfCoursesComponent";
 
 function Dashboard() {
   return (
@@ -48,14 +50,35 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
+        <Row xs="2">
+          <Col xs='5'>
+            <Card className="card-chart">
+              <Card.Body>
+                {/* <Card.Title as="h4" className="text-center">Schwundfaktor-Entwicklung</Card.Title> */}
+                <div>
+                  <SfDevComponent></SfDevComponent>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs='5'>
+            <Card className="card-chart">
+              <Card.Body>
+                {/* <Card.Title as="h4" className="text-center">Schwundfator-Entwicklung zwischen Studiengängen</Card.Title> */}
+                <div>
+                  <SfCoursesComponent></SfCoursesComponent>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
         <Row>
           <Col xs="10">
             <Card className="card-chart">
               <Card.Body>
-                <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title>
+                {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
                 <div>
                   <SfStudentsComponent></SfStudentsComponent>
-                  {/* {SfStudentsComponent()} */}
                 </div>
               </Card.Body>
             </Card>

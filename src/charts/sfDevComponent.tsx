@@ -4,6 +4,7 @@ import { schwundfaktorDaten } from './helperData';
 import sfDevChart from './sfDevChart';
 import { Option } from 'react-select/src/filters';
 import '../assets/css/sfDevComponent.css';
+import { Col, Row } from 'react-bootstrap';
 
 const SfDevComponent = () => {
   const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[0]);
@@ -25,19 +26,25 @@ const SfDevComponent = () => {
 
   return (
     <div className='sfDevContainer'>
-      <div className='sfDevChart'>
-        {chartData}
-      </div>
-      <div className='sfDevFilter'>
-      <label className='sfDevFilterLabel'>Studiengang:</label>
-        <Select
-              isClearable={true}
-              isSearchable={true}
-              options={sfDevFilterOptions}
-              onChange={handleChange}
-              defaultValue={sfDevFilterOptions[0]}
-          />
-      </div>
+      <Col>
+        <Row className='sfDevChart'>
+          {chartData}
+        </Row>
+        <Row >
+          <Col className='sfDevFilter' xs="1">
+        <label className='sfDevFilterLabel align-middle'>Studiengang:</label>
+        </Col>
+        <Col>
+          <Select
+                isClearable={true}
+                isSearchable={true}
+                options={sfDevFilterOptions}
+                onChange={handleChange}
+                defaultValue={sfDevFilterOptions[0]}
+            />
+          </Col>
+        </Row>
+      </Col>
     </div>
   );
 };

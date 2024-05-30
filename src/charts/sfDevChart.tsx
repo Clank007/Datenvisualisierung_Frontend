@@ -10,6 +10,8 @@ import { Chart as ChartJS,
          Filler } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import SchwundfaktorFormat from './helperTypes';
+const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../constants/color_constants');
+
 
 // register imported plugins from chart.js
 ChartJS.register(
@@ -31,12 +33,12 @@ const calcData = (sfData: SchwundfaktorFormat) => {
       {
         label: 'Schwundfaktor',
         data: sfData.faktor,
-        pointBackgroundColor: 'rgb(47, 137, 193)',
-        borderColor: 'rgb(47, 137, 193)',
-        pointRadius: 8,
+        pointBackgroundColor: RGB_CD_BLAU,
+        borderColor: RGB_CD_BLAU,
+        pointRadius: 4,
         pointHitRadius: 40,
         datalabels: {
-          backgroundColor: 'rgb(47, 137, 193)',
+          backgroundColor: RGB_CD_BLAU,
           borderRadius: 4,
           color: 'rgb(255, 255, 255)',
           font: {
@@ -56,7 +58,7 @@ const calcData = (sfData: SchwundfaktorFormat) => {
         },
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
-        borderDash: [5, 5],
+        borderDash: [5, 5]
       }
     ]
   };
@@ -87,7 +89,12 @@ const options = (sfData: SchwundfaktorFormat) => {
       },
       title: {
         display: true,
-        text: 'Schwundfaktor Entwicklung von ' + sfData.course,
+        text: 'Schwundfaktorentwicklung von ' + sfData.course,
+        color: 'black',
+        font: {
+          size: 23,
+          weight: "normal" as any,
+        }
       },
     }
   }

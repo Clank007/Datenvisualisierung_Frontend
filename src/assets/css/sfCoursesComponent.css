@@ -4,14 +4,14 @@
   }
   
 .sfCoursesChart {
-  width: 80%;
+  width: 100%;
   padding: 10px;
 }
   
 .sfCoursesFilter {
   width: 20%;
   padding: 10px;
-  border-left: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; */
 }
 
 .sfCoursesFilterLabel {

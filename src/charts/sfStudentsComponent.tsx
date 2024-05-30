@@ -114,10 +114,15 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Studierendenverlauf DSI 2020',
+            text: 'Schwundfaktorberechnung DSI 2020',
+            color: 'black',
+            font: {
+              size: 24,
+              weight: "normal" as any,
+            }
         },
         colors: {
-            forceOverride: true,
+            //forceOverride: true,
         },
     },
 };

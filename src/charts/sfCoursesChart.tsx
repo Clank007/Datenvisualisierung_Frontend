@@ -12,6 +12,7 @@ import { Chart as ChartJS,
 import SchwundfaktorFormat from './helperTypes';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { schwundfaktorDaten } from "./helperData";
+const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../constants/color_constants');
 
 // register imported plugins from chart.js
 ChartJS.register(
@@ -28,11 +29,15 @@ ChartJS.register(
 );
 
 const data = (sfData : SchwundfaktorFormat[]) => {
-    const sfDatasets = sfData.map((row) => {
+    var colors = [RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT]
+
+    const sfDatasets = sfData.map((row,i) => {
         return ({
             label: row.course,
             data: row.faktor,
-            pointRadius: 6,
+            pointRadius: 4,
+            borderColor: colors[i],
+            backgroundColor: colors[i],
             plugins: {
                 datalabels: {
                     display: false,
@@ -46,6 +51,7 @@ const data = (sfData : SchwundfaktorFormat[]) => {
         label: 'Idealwert',
         data: schwundfaktorDaten[0].years.map(() => 1),
         pointRadius: 0,
+        borderColor: 'rgba(0, 0, 0, 0.5)',
         borderDash: [5, 5],
         plugins: {
             datalabels: {
@@ -82,17 +88,22 @@ const options = {
     plugins: {
         legend: {
             display: true,
-            position: 'right' as const,
+            position: 'right' as const
         },
         title: {
             display: true,
             text: 'Schwundfaktorentwicklung zwischen den Studiengängen',
+            color: 'black',
+            font: {
+              size: 24,
+              weight: "normal" as any,
+            }
         },
         datalabels: {
             display: false,
         },
         colors: {
-            forceOverride: true,
+           //forceOverride: true,
         },
     }
 };
