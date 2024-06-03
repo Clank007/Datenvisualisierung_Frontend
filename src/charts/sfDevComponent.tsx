@@ -7,7 +7,7 @@ import '../assets/css/sfDevComponent.css';
 import { Col, Row } from 'react-bootstrap';
 
 const SfDevComponent = () => {
-  const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[0]);
+  const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[6]);
 
   const sfDevFilterOptions = schwundfaktorDaten.map((course, index) => ({
     value: String(index),
@@ -40,7 +40,7 @@ const SfDevComponent = () => {
                 isSearchable={true}
                 options={sfDevFilterOptions}
                 onChange={handleChange}
-                defaultValue={sfDevFilterOptions[0]}
+                defaultValue={sfDevFilterOptions[6]}
             />
           </Col>
         </Row>

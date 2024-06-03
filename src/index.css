@@ -23,3 +23,35 @@ code {
   --cd_rot: rgb(195 , 5 , 50);
   --cd_violett: rgb(120 , 100 , 165);
 }
+
+:global(.cd_blau) {
+  color: var(--cd_blau);
+}
+
+:global(.cd_tuerkis) {
+  color: var(--cd_tuerkis);
+}
+
+:global(.cd_gruen) {
+  color: var(--cd_gruen);
+}
+
+:global(.cd_hellgruen) {
+  color: var(--cd_hellgruen);
+}
+
+:global(.cd_gelb) {
+  color: var(--cd_gelb);
+}
+
+:global(.cd_orange) {
+  color: var(--cd_orange);
+}
+
+:global(.cd_rot) {
+  color: var(--cd_rot);
+}
+
+:global(.cd_violett) {
+  color: var(--cd_violett);
+}

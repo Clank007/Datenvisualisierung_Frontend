@@ -12,7 +12,7 @@ type SelectOption = {
 };
 
 const SfCoursesComponent = () => {
-    const [selectedCourses, setSelectedCourses] = useState<SchwundfaktorFormat[]>([schwundfaktorDaten[0]]);
+    const [selectedCourses, setSelectedCourses] = useState<SchwundfaktorFormat[]>([schwundfaktorDaten[6]]);
     const sfCoursesFilterOptions = schwundfaktorDaten.map((course, index) => ({
         value: String(index),
         label: course.course
@@ -46,7 +46,7 @@ const SfCoursesComponent = () => {
                             isMulti={true}
                             options={sfCoursesFilterOptions}
                             onChange={handleChange}
-                            defaultValue={sfCoursesFilterOptions[0]}
+                            defaultValue={sfCoursesFilterOptions[6]}
                         />
                     </Col>
                 </Row>

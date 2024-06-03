@@ -89,7 +89,7 @@ const options = (sfData: SchwundfaktorFormat) => {
       },
       title: {
         display: true,
-        text: 'Schwundfaktorentwicklung von ' + sfData.course,
+        text: 'Schwundfaktorentwicklung ' + sfData.course,
         color: 'black',
         font: {
           size: 23,
