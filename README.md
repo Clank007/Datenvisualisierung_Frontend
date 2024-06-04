@@ -15,7 +15,7 @@ Depending on what you are making, it can be a good idea to include screenshots o
 npm install
 ```
 ```
-npm run dev
+npm run start
 ```
 3. Die Seite sollte sich automatisch öffnen. Falls nicht, öffne die die in der cmd gezeigte localhost URL. 
 
@@ -36,7 +36,7 @@ For people who want to make changes to your project, it's helpful to have some d
 You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
 
 ## Authors and acknowledgment
-Your Gruppe 3
+Your Gruppe 3 <3
 
 ## License
 Non License
