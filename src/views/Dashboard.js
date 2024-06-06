@@ -66,7 +66,8 @@ function Dashboard() {
                   <Col xs="8">
                     <div className="numbers">
                       <p className="card-category">Ø Schwundfaktor</p>
-                      <Card.Title as="h3">{Math.round(avg(schwundfaktorDaten[6].faktor)*10000,4)/10000}</Card.Title>
+                      {/* <Card.Title as="h3">{Math.round(avg(schwundfaktorDaten[6].faktor)*10000,4)/10000}</Card.Title> */}
+                      <Card.Title as="h3">1,1928</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -97,6 +98,16 @@ function Dashboard() {
           </Col>
         </Row>
         <Row xs="2">
+        <Col xs='5'>
+            <Card className="card-chart">
+              <Card.Body>
+                {/* <Card.Title as="h4" className="text-center">Schwundfator-Entwicklung zwischen Studiengängen</Card.Title> */}
+                <div>
+                  <SfCoursesComponent></SfCoursesComponent>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
           <Col xs='5'>
             <Card className="card-chart">
               <Card.Body>
@@ -107,16 +118,7 @@ function Dashboard() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xs='5'>
-            <Card className="card-chart">
-              <Card.Body>
-                {/* <Card.Title as="h4" className="text-center">Schwundfator-Entwicklung zwischen Studiengängen</Card.Title> */}
-                <div>
-                  <SfCoursesComponent></SfCoursesComponent>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
+
         </Row>
         <Row>
           <Col xs="10">

@@ -48,7 +48,7 @@ const data = (sfData : SchwundfaktorFormat[]) => {
 
     // add ideal line with data values 1 to datasets
     const ideallinie = {
-        label: 'Idealwert',
+        label: '1',
         data: schwundfaktorDaten[0].years.map(() => 1),
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
@@ -78,7 +78,8 @@ const options = {
             },
         },
         y: {
-            min: 0,
+            min: 0.5,
+            //max: 2.5,
             title: {
                 display: true,
                 text: 'Schwundfaktor',

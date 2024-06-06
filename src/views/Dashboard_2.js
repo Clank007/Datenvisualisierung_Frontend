@@ -66,7 +66,8 @@ function Dashboard_2() {
                   <Col xs="8">
                     <div className="numbers">
                       <p className="card-category">Ø Schwundfaktor</p>
-                      <Card.Title as="h3">{Math.round(avg(schwundfaktorDaten[6].faktor)*10000,4)/10000}</Card.Title>
+                      {/* <Card.Title as="h3">{Math.round(avg(schwundfaktorDaten[6].faktor)*10000,4)/10000}</Card.Title> */}
+                      <Card.Title as="h3">1,1928</Card.Title>
                     </div>
                   </Col>
                 </Row>
