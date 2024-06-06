@@ -8,7 +8,7 @@ const Login = () => {
 
   const handleLogin = () => {
     // keine Authentifizierung nötig im Prototypen, einfaches Redirect
-    navigate('/admin/dashboard1');
+    navigate('/admin/schwundberechnung');
   };
 
   return (

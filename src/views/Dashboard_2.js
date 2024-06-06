@@ -99,10 +99,11 @@ function Dashboard_2() {
         <Row>
           <Col xs="10">
             <Card className="card-chart">
+              <Card.Title as="h3" className="text-center pt-4">Studienverlauf DSI WiSe 17/18</Card.Title>
               <Card.Body>
                 {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
                 <div>
-                  <SfStudentsComponent></SfStudentsComponent>
+                  <img src={require('../assets/img/sankey.png')} width="100%" height="100%" />
                 </div>
               </Card.Body>
             </Card>
