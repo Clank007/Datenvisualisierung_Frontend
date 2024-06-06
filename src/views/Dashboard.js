@@ -20,6 +20,7 @@ import SfCoursesComponent from "../charts/sfCoursesComponent";
 
 import SchwundfaktorFormat from "../charts/helperTypes";
 import { schwundfaktorDaten } from '../charts/helperData';
+import ChartComponent from "../charts/ChartComponent";
 
 const sum = (X) => X.reduce((a, b) => a + b, 0);
 const avg = (X) => (sum(X) / X.length) || 0;
@@ -124,7 +125,7 @@ function Dashboard() {
               <Card.Body>
                 {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
                 <div>
-                  <SfStudentsComponent></SfStudentsComponent>
+                  <ChartComponent></ChartComponent>
                 </div>
               </Card.Body>
             </Card>
