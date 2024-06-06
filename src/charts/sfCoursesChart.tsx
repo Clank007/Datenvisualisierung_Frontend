@@ -92,7 +92,7 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Schwundfaktorentwicklung zwischen den Studiengängen',
+            text: 'Schwundfaktorentwicklung Vergleich',
             color: 'black',
             font: {
               size: 24,

@@ -1,18 +1,19 @@
 import Dashboard from "./views/Dashboard.js";
+import Dashboard_2 from "./views/Dashboard_2.js";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard1",
-    name: "Dashboard",
+    path: "/schwundberechnung",
+    name: "Schwundberechnung",
     icon: "nc-icon nc-chart-pie-35",
     component: Dashboard,
     layout: "/admin"
   },
   {
-    path: "/dashboard2",
-    name: "Dashboard",
+    path: "/studienverlauf",
+    name: "Studienverlauf",
     icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
+    component: Dashboard_2,
     layout: "/admin"
   }
 ];
