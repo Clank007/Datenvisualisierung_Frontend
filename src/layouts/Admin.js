@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import AdminNavbar from "../components/AdminNavbar";
-import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 
 import routes from "../routes.js";
@@ -38,7 +37,6 @@ function Admin() {
           <div className="content">
             <Routes>{getRoutes(routes)}</Routes>
           </div>
-          <Footer />
         </div>
       </div>
     </>

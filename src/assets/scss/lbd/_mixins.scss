@@ -1,22 +1,11 @@
 //Utilities 
 
-@import "mixins/transparency";
-@import "mixins/vendor-prefixes";
-
+@import "mixins/transparency"; //used in lbd/_buttons.scss
+@import "mixins/vendor-prefixes"; //used for transitions
 
 //Components
 
-@import "mixins/buttons";
-@import "mixins/inputs";
-@import "mixins/labels";
-@import "mixins/tabs";
-
-@import "mixins/navbars";
-@import "mixins/icons";
-@import "mixins/social-buttons";
-
-@import "mixins/morphing-buttons";
-
-@import "mixins/cards";
-
-@import "mixins/chartist";
+@import "mixins/buttons"; //used in lbd/_buttons.scss
+@import "mixins/inputs"; //used in lbd/_inputs.scss
+@import "mixins/navbars"; //used in lbd/_navbars.scss
+@import "mixins/cards"; //used in lbd/_cards.scss
