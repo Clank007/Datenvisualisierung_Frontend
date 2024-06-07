@@ -1,9 +1,9 @@
 import Select, { ActionMeta, MultiValue } from "react-select";
-import { schwundfaktorDaten } from './helperData';
-import sfCoursesChart from "./sfCoursesChart";
+import { schwundfaktorDaten } from '../charts/helperData';
+import sfCoursesChart from "../charts/sfCoursesChart";
 import "../assets/css/sfCoursesComponent.css";
 import { useState } from "react";
-import SchwundfaktorFormat from "./helperTypes";
+import SchwundfaktorFormat from "../charts/helperTypes";
 import { Col, Row } from "react-bootstrap";
 
 type SelectOption = {

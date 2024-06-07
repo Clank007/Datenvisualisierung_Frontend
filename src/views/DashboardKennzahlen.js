@@ -1,32 +1,18 @@
-import React from "react";
-import SfStudentsComponent from "../charts/sfStudentsComponent";
 // react-bootstrap components
 import {
-  Badge,
-  Button,
   Card,
-  Navbar,
-  Nav,
-  Table,
-  Container,
-  Row,
   Col,
-  Form,
-  OverlayTrigger,
-  Tooltip,
+  Container,
+  Row
 } from "react-bootstrap";
-import SfDevComponent from "../charts/sfDevComponent";
-import SfCoursesComponent from "../charts/sfCoursesComponent";
 
-import SchwundfaktorFormat from "../charts/helperTypes";
-import { schwundfaktorDaten } from '../charts/helperData';
 
 const sum = (X) => X.reduce((a, b) => a + b, 0);
 const avg = (X) => (sum(X) / X.length) || 0;
 
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../constants/color_constants');
 
-function Dashboard_2() {
+function DashboardKennzahlen() {
   return (
     <>
       <Container fluid>
@@ -97,22 +83,9 @@ function Dashboard_2() {
             </Card>
           </Col>
         </Row>
-        <Row>
-          <Col xs="10">
-            <Card className="card-chart">
-              <Card.Title as="h3" className="text-center pt-4">Studienverlauf DSI WiSe 17/18</Card.Title>
-              <Card.Body>
-                {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
-                <div>
-                  <img src={require('../assets/img/sankey.png')} width="100%" height="100%" />
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
       </Container>
     </>
   );
 }
 
-export default Dashboard_2;
+export default DashboardKennzahlen;

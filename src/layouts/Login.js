@@ -1,7 +1,6 @@
-import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import '../assets/css/login.css'; 
+import '../assets/css/login.css';
 
 const Login = () => {
     const navigate = useNavigate();

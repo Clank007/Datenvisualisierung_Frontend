@@ -1,19 +1,27 @@
-import Dashboard from "./views/Dashboard.js";
-import Dashboard_2 from "./views/Dashboard_2.js";
+import DashboardKennzahlen from "./views/DashboardKennzahlen.js";
+import DashboardSchwundberechnung from "./views/DashboardSchwundberechnung.js";
+import DashboardStudienverlauf from "./views/DashboardStudienverlauf.js";
 
 const dashboardRoutes = [
+  {
+    path: "/kennzahlen",
+    name: "Kennzahlen",
+    icon: "nc-icon nc-chart-pie-35",
+    component: DashboardKennzahlen,
+    layout: "/admin"
+  },
   {
     path: "/schwundberechnung",
     name: "Schwundberechnung",
     icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard,
+    component: DashboardSchwundberechnung,
     layout: "/admin"
   },
   {
     path: "/studienverlauf",
     name: "Studienverlauf",
     icon: "nc-icon nc-chart-pie-35",
-    component: Dashboard_2,
+    component: DashboardStudienverlauf,
     layout: "/admin"
   }
 ];

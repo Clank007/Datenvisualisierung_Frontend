@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 
 import routes from "../routes.js";
 

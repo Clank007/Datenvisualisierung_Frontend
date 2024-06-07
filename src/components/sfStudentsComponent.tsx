@@ -13,7 +13,7 @@ import { Chart as ChartJS,
          BarController,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { StudierendenVerlauf2020 } from './helperData';
+import { StudierendenVerlauf2020 } from '../charts/helperData';
 const {RGB_VALS_CD_BLAU, RGB_VALS_CD_TUERKIS, RGB_VALS_CD_GRUEN, RGB_VALS_CD_HELLGRUEN, RGB_VALS_CD_GELB, RGB_VALS_CD_ORANGE, RGB_VALS_CD_ROT, RGB_VALS_CD_VIOLETT} = require('../constants/color_constants');
 
 // register imported plugins from chart.js
