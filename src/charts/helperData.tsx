@@ -26,16 +26,22 @@ export const StudierendenVerlauf2020 = [
         meanSuccess: [1.0000, 0.9667, 0.9554, 0.9558, 0.8784, 1.0000, 0.9524, 1.0037],
         kohorten: [
             { 
-                kohorte: "WiSe15/16",
+                kohorte: "akademisches Jahr 2015",
                 netStudents: [10, 9, 9, 9, 7, 7, 6, 6],
+                WiSe: [10, 9, 9, 9, 7, 7, 6, 6],
+                SoSe: [0, 0, 0, 0, 0, 0, 0, 0],
             },
             {
-                kohorte: "WiSe16/17",
+                kohorte: "akademisches Jahr 2016",
                 netStudents: [21, 21, 19, 18, 17, 17, 17, 18],
+                WiSe: [21, 21, 19, 18, 17, 17, 17, 18],
+                SoSe: [0, 0, 0, 0, 0, 0, 0, 0],
             },
             {
-                kohorte: "WiSe17/18",
+                kohorte: "akademisches Jahr 2017",
                 netStudents: [26, 26, 25, 23, 21, 21, 21, 20],
+                WiSe: [26, 26, 25, 23, 21, 21, 21, 20],
+                SoSe: [0, 0, 0, 0, 0, 0, 0, 0],
             },
         ],
     },
