@@ -79,7 +79,8 @@ const options = {
         },
         y: {
             min: 0.5,
-            //max: 2.5,
+            // get maximum value across all datasets
+            max: Math.max(...schwundfaktorDaten.map(row => Math.max(...(row.faktor.map(faktor => (faktor === null) ? 0 : faktor))))) + 0.1,
             title: {
                 display: true,
                 text: 'Schwundfaktor',
