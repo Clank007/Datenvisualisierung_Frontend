@@ -14,7 +14,7 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path="/admin/*" element={<Admin />} />
-      <Route path="/admin" element={<Navigate to="/admin/schwundberechnung" />} />
+      <Route path="/admin" element={<Navigate to="/admin/kennzahlen" />} />
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
     </Routes>

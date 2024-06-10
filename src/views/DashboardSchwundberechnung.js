@@ -13,7 +13,7 @@ import SfDevComponent from "../components/sfDevComponent";
 const sum = (X) => X.reduce((a, b) => a + b, 0);
 const avg = (X) => (sum(X) / X.length) || 0;
 
-function DashboardSchwundberechnung() {
+function DashboardSchwundberechnung(props) {
   return (
     <>
       <Container fluid>
@@ -23,7 +23,7 @@ function DashboardSchwundberechnung() {
               <Card.Body>
                 {/* <Card.Title as="h4" className="text-center">Schwundfator-Entwicklung zwischen Studiengängen</Card.Title> */}
                 <div>
-                  <SfCoursesComponent></SfCoursesComponent>
+                  <SfCoursesComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfCoursesComponent>
                 </div>
               </Card.Body>
             </Card>
@@ -33,7 +33,7 @@ function DashboardSchwundberechnung() {
               <Card.Body>
                 {/* <Card.Title as="h4" className="text-center">Schwundfaktor-Entwicklung</Card.Title> */}
                 <div>
-                  <SfDevComponent></SfDevComponent>
+                  <SfDevComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfDevComponent>
                 </div>
               </Card.Body>
             </Card>
@@ -46,7 +46,7 @@ function DashboardSchwundberechnung() {
               <Card.Body>
                 {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
                 <div>
-                  <SfStudentsComponent></SfStudentsComponent>
+                  <SfStudentsComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfStudentsComponent>
                 </div>
               </Card.Body>
             </Card>
