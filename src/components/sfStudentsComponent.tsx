@@ -127,7 +127,8 @@ const options = {
     },
 };
 
-const SfStudentsComponent = () => {
+const SfStudentsComponent = (props: any) => {
+    // use props.selectedBaseCourse for selected course
     return (
         <div>
             <Chart 

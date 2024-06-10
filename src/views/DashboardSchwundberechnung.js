@@ -23,7 +23,7 @@ function DashboardSchwundberechnung(props) {
               <Card.Body>
                 {/* <Card.Title as="h4" className="text-center">Schwundfator-Entwicklung zwischen Studiengängen</Card.Title> */}
                 <div>
-                  <SfCoursesComponent selectedBaseStudiengang={props.selectedBaseStudiengang}></SfCoursesComponent>
+                  <SfCoursesComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfCoursesComponent>
                 </div>
               </Card.Body>
             </Card>
@@ -33,7 +33,7 @@ function DashboardSchwundberechnung(props) {
               <Card.Body>
                 {/* <Card.Title as="h4" className="text-center">Schwundfaktor-Entwicklung</Card.Title> */}
                 <div>
-                  <SfDevComponent selectedBaseStudiengang={props.selectedBaseStudiengang}></SfDevComponent>
+                  <SfDevComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfDevComponent>
                 </div>
               </Card.Body>
             </Card>
@@ -46,7 +46,7 @@ function DashboardSchwundberechnung(props) {
               <Card.Body>
                 {/* <Card.Title as="h3" className="text-center">Schwundberechnung</Card.Title> */}
                 <div>
-                  <SfStudentsComponent selectedBaseStudiengang={props.selectedBaseStudiengang}></SfStudentsComponent>
+                  <SfStudentsComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfStudentsComponent>
                 </div>
               </Card.Body>
             </Card>

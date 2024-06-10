@@ -109,8 +109,14 @@ const options = {
     }
 };
 
-const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}) => {
-    const sfCoursesData = data(sfData);
+const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBaseCourse}: {selectedBaseCourse: SchwundfaktorFormat}) => {
+    const combinedData: SchwundfaktorFormat[] = [
+        selectedBaseCourse,
+        ...sfData
+    ];
+
+    console.log(combinedData);
+    const sfCoursesData = data(combinedData);
     return (
         <Line 
             data={sfCoursesData}

@@ -1,28 +1,9 @@
-import { useState } from 'react';
-import Select, { ActionMeta } from 'react-select';
-import { schwundfaktorDaten } from '../charts/helperData';
-import sfDevChart from '../charts/sfDevChart';
-import { Option } from 'react-select/src/filters';
-import '../assets/css/sfDevComponent.css';
 import { Col, Row } from 'react-bootstrap';
+import '../assets/css/sfDevComponent.css';
+import sfDevChart from '../charts/sfDevChart';
 
 const SfDevComponent = (props: any) => {
-  const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[6]);
-
-  const sfDevFilterOptions = schwundfaktorDaten.map((course, index) => ({
-    value: String(index),
-    label: course.course,
-    data: null
-  }));
-
-  const handleChange = (selOption: Option | null, actionMeta: ActionMeta<Option>) => {
-    if (selOption !== null) {
-        const course = schwundfaktorDaten[Number(selOption.value)];
-        setSelectedCourse(course);
-    }
-  };
-
-  const chartData = sfDevChart({ sfData: props.selectedBaseStudiengang });
+  const chartData = sfDevChart({ sfData: props.selectedBaseCourse });
 
   return (
     <div className='sfDevContainer'>
@@ -30,20 +11,6 @@ const SfDevComponent = (props: any) => {
         <Row className='sfDevChart'>
           {chartData}
         </Row>
-        {/* <Row >
-          <Col className='sfDevFilter' xs="1">
-        <label className='sfDevFilterLabel align-middle'>Studiengang:</label>
-        </Col>
-        <Col>
-          <Select
-                isClearable={true}
-                isSearchable={true}
-                options={sfDevFilterOptions}
-                onChange={handleChange}
-                defaultValue={sfDevFilterOptions[6]}
-            />
-          </Col>
-        </Row> */}
       </Col>
     </div>
   );
