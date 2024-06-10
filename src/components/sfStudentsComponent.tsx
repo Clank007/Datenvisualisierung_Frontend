@@ -81,6 +81,26 @@ const data = () => {
     };
 };
 
+function detailedTooltipLabel(context: any) {
+    // let label = context.dataset.label || '';
+    //only change bar tooltip labels
+    // if (context.dataset.type === 'bar') {
+    //     return label
+    // };
+    // let label = context.dataset.label || '';
+    //                 console.log(context);
+    //                 if (context.dataset.type === 'bar') {
+    //                     return 'akad. Jahr: ' + context.raw;
+    //                 };
+    //                 if (label) {
+    //                     label += ': ';
+    //                 };
+    //                 if (context.parsed.y !== null) {
+    //                     label += context.parsed.y;
+    //                 };
+    //                 return label;
+};
+
 const options = {
     scales: {
         x: {
@@ -121,9 +141,30 @@ const options = {
               weight: "normal" as any,
             }
         },
-        colors: {
-            //forceOverride: true,
-        },
+        // tooltip: {
+        //     callbacks: {
+        //         label: function(context: any) {
+        //             let label = context.dataset.label || '';
+        //             console.log(context);
+        //             if (context.dataset.type === 'bar') {
+        //                 return 'akad. Jahr: ' + context.raw;
+        //             };
+        //             if (label) {
+        //                 label += ': ';
+        //             };
+        //             if (context.parsed.y !== null) {
+        //                 label += context.parsed.y;
+        //             };
+        //             return label;
+        //         },
+        //         afterLabel: function(context: any) {
+        //             if (context.dataset.type === 'bar') {
+        //                 return 'Testtext';
+        //             };
+        //             return '';
+        //         },
+        //     },
+        // },
     },
 };
 
