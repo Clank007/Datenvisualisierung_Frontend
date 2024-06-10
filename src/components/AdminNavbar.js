@@ -61,6 +61,7 @@ function Header(props) {
               isMulti={true}
               options={props.coursesOptions}
               onChange={props.handleCoursesChange}
+              placeholder={"Studiengänge wählen..."}
           />
           <Nav className="ms-auto" navbar>
             <Nav.Item>

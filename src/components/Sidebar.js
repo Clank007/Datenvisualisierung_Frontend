@@ -11,11 +11,11 @@ function Sidebar({ routes }) {
     <div className="sidebar">
       <div className="sidebar-wrapper">
         <div className="logo d-flex align-items-center justify-content-start">
-          <a href="/admin/dashboard1"
+          <a href="/admin/kennzahlen"
             className="simple-text logo-mini mx-1"
           >
             <div className="logo-img">
-              <img src={require("../assets/img/HSB_Logo_Weiss_sRGB.png")} alt="..." />
+              <img src={require("../assets/img/HSB_Logo_Weiss_sRGB.png")} alt="HSB" />
             </div>
           </a>
         </div>
@@ -35,7 +35,6 @@ function Sidebar({ routes }) {
                     to={prop.layout + prop.path}
                     className="nav-link"
                   >
-                    {/* <i className={prop.icon} /> */}
                     <p>{prop.name}</p>
                   </NavLink>
                 </li>
