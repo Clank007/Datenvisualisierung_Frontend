@@ -6,7 +6,7 @@ import { Option } from 'react-select/src/filters';
 import '../assets/css/sfDevComponent.css';
 import { Col, Row } from 'react-bootstrap';
 
-const SfDevComponent = () => {
+const SfDevComponent = (props: any) => {
   const [selectedCourse, setSelectedCourse] = useState(schwundfaktorDaten[6]);
 
   const sfDevFilterOptions = schwundfaktorDaten.map((course, index) => ({
@@ -22,7 +22,7 @@ const SfDevComponent = () => {
     }
   };
 
-  const chartData = sfDevChart({ sfData: selectedCourse });
+  const chartData = sfDevChart({ sfData: props.selectedBaseStudiengang });
 
   return (
     <div className='sfDevContainer'>
@@ -30,7 +30,7 @@ const SfDevComponent = () => {
         <Row className='sfDevChart'>
           {chartData}
         </Row>
-        <Row >
+        {/* <Row >
           <Col className='sfDevFilter' xs="1">
         <label className='sfDevFilterLabel align-middle'>Studiengang:</label>
         </Col>
@@ -43,7 +43,7 @@ const SfDevComponent = () => {
                 defaultValue={sfDevFilterOptions[6]}
             />
           </Col>
-        </Row>
+        </Row> */}
       </Col>
     </div>
   );

@@ -1,9 +1,11 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
+import Select from "react-select";
+import { schwundfaktorDaten } from '../charts/helperData';
 
 import routes from "../routes.js";
 
-function Header() {
+function Header(props) {
   const location = useLocation();
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
@@ -32,6 +34,7 @@ function Header() {
     // keine Authentifizierung nötig im Prototypen, einfaches Redirect
     navigate('/login');
   };
+
 
   return (
     <Navbar bg="light" expand="lg">
@@ -70,6 +73,13 @@ function Header() {
               </Nav.Link>
             </Nav.Item>
           </Nav>
+          <Select
+                isClearable={true}
+                isSearchable={true}
+                options={props.baseStudiengangOptions}
+                onChange={props.handleBaseStudiengagChange}
+                defaultValue={props.baseStudiengangOptions[6]}
+            />
           <Nav className="ms-auto" navbar>
             <Nav.Item>
               <Nav.Link
