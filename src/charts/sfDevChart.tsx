@@ -48,6 +48,7 @@ const calcData = (sfData: SchwundfaktorFormat) => {
           clamp: true,
           offset: 12,
           align: 'bottom' as const,
+          formatter: function(value: any, context: any) { return String(value).replace('.', ','); },
         },
       },
       {
