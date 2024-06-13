@@ -73,8 +73,7 @@ const options = {
     scales: {
         x: {
             title: {
-                display: true,
-                text: 'Jahr',
+                display: false,
             },
         },
         y: {

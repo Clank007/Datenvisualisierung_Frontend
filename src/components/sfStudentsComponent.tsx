@@ -69,7 +69,7 @@ const data = () => {
             padding: 6,
             clamp: true,
             align: 'top' as const,
-            formatter: function(value: any, context: any) { return String(value).replace('.', ''); },
+            formatter: function(value: any, context: any) { return String(value).replace('.', ','); },
         }
     };
 

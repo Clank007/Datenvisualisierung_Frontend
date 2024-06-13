@@ -69,11 +69,15 @@ const calcData = (sfData: SchwundfaktorFormat) => {
 
 const options = (sfData: SchwundfaktorFormat) => {
   return {
+    layout: {
+      padding: {
+        right: 30,
+      },
+    },
     scales: {
       x: {
         title: {
-          display: true,
-          text: 'Jahr',
+          display: false,
         }
       },
       y: {
