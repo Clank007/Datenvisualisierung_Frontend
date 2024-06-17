@@ -7,7 +7,7 @@ const Glossar = () => {
 
 
     return (
-    <Accordion alwaysOpen flush className="rounded-accordion">
+    <Accordion alwaysOpen flush className="rounded-accordion ps-2">
       <Accordion.Item eventKey="0" className="rounded-accordion">
         <Accordion.Header>Accordion Item #1</Accordion.Header>
         <Accordion.Body>
