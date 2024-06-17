@@ -1,6 +1,7 @@
 import DashboardKennzahlen from "./views/DashboardKennzahlen.js";
 import DashboardSchwundberechnung from "./views/DashboardSchwundberechnung.js";
 import DashboardStudienverlauf from "./views/DashboardStudienverlauf.js";
+import Glossar from "./views/Glossar.js";
 
 const dashboardRoutes = [
   {
@@ -22,6 +23,13 @@ const dashboardRoutes = [
     name: "Studienverlauf",
     icon: "nc-icon nc-chart-pie-35",
     component: DashboardStudienverlauf,
+    layout: "/admin"
+  },
+  {
+    path: "/glossar",
+    name: "Glossar",
+    icon: "nc-icon nc-chart-pie-35",
+    component: Glossar,
     layout: "/admin"
   }
 ];

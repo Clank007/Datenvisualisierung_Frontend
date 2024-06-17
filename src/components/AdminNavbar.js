@@ -16,6 +16,7 @@ function Header(props) {
   const navigate = useNavigate();
 
   const showCompareSelect = location.pathname == '/admin/schwundberechnung';
+  const showBaseSelect = location.pathname !='/admin/glossar';
 
   /**
    * Function to get name (= name in sidebar) from current route.
@@ -24,7 +25,7 @@ function Header(props) {
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
-        return routes[i].name + " für:";
+        return routes[i].name + (showBaseSelect ? " für:" : "");
       }
     }
     return "Brand";
@@ -47,13 +48,14 @@ function Header(props) {
             {getBrandText()}
           </Navbar.Brand>
         </div>
-          <Select
+          {showBaseSelect &&
+          (<Select
                 isClearable={false}
                 isSearchable={true}
                 options={props.baseCourseOptions}
                 onChange={props.handleBaseCourseChange}
                 defaultValue={props.baseCourseOptions[6]}
-            />
+            />)}
           {showCompareSelect &&
           (<React.Fragment>
           <Navbar.Brand className="mr-2 ps-3" >
