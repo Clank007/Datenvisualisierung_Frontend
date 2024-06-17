@@ -69,9 +69,9 @@ body > .navbar-collapse{
         li{
             .nav-link{
                 color: $white-color;
-                margin: 5px 15px;
+                margin: 5px 0px;
                 opacity: .86;
-                border-radius: 4px;
+                border-radius: 0px;
                 display: block;
                 padding: 10px 15px;
 
@@ -193,8 +193,8 @@ body > .navbar-collapse{
     &:before,
     &:after{
         background-image: url('../../img/01_Blau-Tuerkis.jpg');
-        background-size: 1500%; /* cover; /* Ensure the image covers the container */
-        background-position: 0% 90%; /* Adjust the visible section of the image */
+        background-size: 1720%; /* cover; /* Ensure the image covers the container */
+        background-position: 0% 87.5%; /* Adjust the visible section of the image */
         background-repeat: repeat; /* Prevent the background from repeating */
         //background-color: var(--cd_blau);
     }
@@ -209,7 +209,7 @@ body > .navbar-collapse{
     min-height: 100%;
 
     > .content{
-        padding: 30px 15px 0px 15px;
+        padding: 20px 15px 0px 15px;
         min-height: calc(100% - 123px);
     }
 

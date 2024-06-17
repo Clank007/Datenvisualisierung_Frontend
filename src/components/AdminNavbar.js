@@ -43,7 +43,7 @@ function Header(props) {
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
-          <Navbar.Brand className="mr-2 pe-3" >
+          <Navbar.Brand className="ps-3 mr-2 pe-3" >
             {getBrandText()}
           </Navbar.Brand>
         </div>
