@@ -12,6 +12,9 @@ import { Chart as ChartJS,
 import SchwundfaktorFormat from './helperTypes';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { schwundfaktorDaten } from "./helperData";
+import React, { useEffect, useRef } from "react";
+import html2canvas from 'html2canvas';
+import '@fortawesome/fontawesome-free/css/all.css';
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 // register imported plugins from chart.js
@@ -110,18 +113,53 @@ const options = {
 };
 
 const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBaseCourse}: {selectedBaseCourse: SchwundfaktorFormat}) => {
+    const chartRef = useRef(null);
     const combinedData: SchwundfaktorFormat[] = [
         selectedBaseCourse,
         ...sfData
     ];
 
+    const downloadChart = () => {
+        const chartElement = chartRef.current;
+        if (chartElement) {
+            html2canvas(chartElement).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'schwundfaktor_vergleich.png';
+                link.click();
+            });
+        }
+    };
+
+    useEffect(() => {
+        //console.log('Component has mounted');
+    }, []);
+
     console.log(combinedData);
     const sfCoursesData = data(combinedData);
     return (
-        <Line 
-            data={sfCoursesData}
-            options={options} 
-        />
+        <React.Fragment>
+            <div ref={chartRef}>
+                <Line 
+                    data={sfCoursesData}
+                    options={options} 
+                />
+            </div>
+            <button 
+                onClick={downloadChart}
+                style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    right: -290,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+                title="Download Chart"
+            >
+                <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
+            </button>
+        </React.Fragment>
     );
 };
 

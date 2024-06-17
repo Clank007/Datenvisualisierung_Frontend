@@ -10,6 +10,9 @@ import { Chart as ChartJS,
          Filler } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import SchwundfaktorFormat from './helperTypes';
+import React, { useEffect, useRef } from "react";
+import html2canvas from 'html2canvas';
+import '@fortawesome/fontawesome-free/css/all.css';
 const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 
@@ -106,10 +109,46 @@ const options = (sfData: SchwundfaktorFormat) => {
 };
 
 const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
+  const chartRef = useRef(null);
+
+  const downloadChart = () => {
+    const chartElement = chartRef.current;
+    if (chartElement) {
+        html2canvas(chartElement).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'schwundfaktor_verlauf.png';
+            link.click();
+        });
+    }
+  };
+
+  useEffect(() => {
+      //console.log('Component has mounted');
+  }, []);
+
   return (
-      <Line 
-        data={calcData(sfData)}
-        options={options(sfData)} />
+    <React.Fragment>
+      <div ref={chartRef}>
+        <Line 
+          data={calcData(sfData)}
+          options={options(sfData)} />
+      </div>
+      <button 
+                onClick={downloadChart}
+                style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    right: -290,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+                title="Download Chart"
+            >
+                <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
+            </button>
+    </React.Fragment>
   );
 };
   
