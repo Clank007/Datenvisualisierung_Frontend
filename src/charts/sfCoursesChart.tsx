@@ -51,10 +51,11 @@ const data = (sfData : SchwundfaktorFormat[]) => {
 
     // add ideal line with data values 1 to datasets
     const ideallinie = {
-        label: '1',
+        label: 'Idealwert',
         data: schwundfaktorDaten[0].years.map(() => 1),
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         borderDash: [5, 5],
         plugins: {
             datalabels: {

@@ -128,6 +128,10 @@ const options = {
             }
         },
     },
+    interaction : {
+        mode: 'index' as const,
+        intersect: false,
+    },
     plugins: {
         datalabels: {
             anchor: 'center' as const,
@@ -142,7 +146,7 @@ const options = {
             color: 'black',
             font: {
               size: 24,
-              weight: "normal" as any,
+              weight: 'normal' as any,
             }
         },
         // tooltip: {
