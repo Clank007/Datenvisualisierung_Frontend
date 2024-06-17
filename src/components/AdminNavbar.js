@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 import routes from "../routes.js";
+import React from "react";
 
 function Header(props) {
   /**
@@ -13,6 +14,8 @@ function Header(props) {
    * Constant needed for navigation.
    */
   const navigate = useNavigate();
+
+  const showCompareSelect = location.pathname == '/admin/schwundberechnung';
 
   /**
    * Function to get name (= name in sidebar) from current route.
@@ -45,12 +48,14 @@ function Header(props) {
           </Navbar.Brand>
         </div>
           <Select
-                isClearable={true}
+                isClearable={false}
                 isSearchable={true}
                 options={props.baseCourseOptions}
                 onChange={props.handleBaseCourseChange}
                 defaultValue={props.baseCourseOptions[6]}
             />
+          {showCompareSelect &&
+          (<React.Fragment>
           <Navbar.Brand className="mr-2 ps-3" >
             {"Vergleich mit:"}
           </Navbar.Brand>
@@ -62,7 +67,11 @@ function Header(props) {
               options={props.coursesOptions}
               onChange={props.handleCoursesChange}
               placeholder={"Studiengänge wählen..."}
+              hideSelectedOptions={true}
+              // isDisabled={!showCompareSelect}
           />
+          </React.Fragment>)
+          }
           <Nav className="ms-auto" navbar>
             <Nav.Item>
               <Nav.Link
