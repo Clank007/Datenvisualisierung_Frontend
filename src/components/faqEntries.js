@@ -1,4 +1,4 @@
-import FAQDictionary from "../assets/FAQDictionary";
+import FAQDictionary from "../util/FAQDictionary";
 import { Accordion } from "react-bootstrap";
 
 const FAQEntries = () => {

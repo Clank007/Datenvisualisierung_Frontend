@@ -1,6 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import '../assets/css/glossar.css';
-import FAQDictionary from "../assets/FAQDictionary";
+import FAQDictionary from "../util/FAQDictionary";
 
 const Glossar = () => {
   return (

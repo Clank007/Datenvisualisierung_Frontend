@@ -1,9 +1,9 @@
 /**
- * Dictionary containing frequently asked questions and their corresponding information. Entries have the following structure:
+ * Dictionary containing frequently asked questions and technical terms along with their corresponding information. Entries have the following structure:
  * - name: The name of the FAQ entry; it also serves as headline
  * - short: A short description of the FAQ entry; it is displayed in the FAQ overview or via Tooltips
- * - long: A more detailed explanation of the FAQ entry; it is displayed when the FAQ entry is opened
- * - link: A link to a source with more detailed or thorough information on the FAQ entry
+ * - long: A more detailed explanation of the FAQ entry; it is displayed when the FAQ entry is opened; Can be an empty string
+ * - link: A link to a source with more detailed or thorough information on the FAQ entry; Can be an empty string
  * 
  * In general, every entry should have all three fields (name, short, long) filled out. link is optional.
  *  
@@ -20,7 +20,7 @@ const FAQDictionary = {
         link:   '',
     },
     academicYear: {
-        name:   'Akademisches Jahr',
+        name:   'Akademisches Jahr/Kohorte',
         short:  'Zusammenfassung der Studierenden eines Jahrgangs aus WiSe und SoSe (auch "Kohorte" genannt)',
         long:   'Das akademische Jahr (bzw. Kohorte) fasst die Studierenden eines Jahrgangs zusammen, die in einem Semester und dem darauffolgendem eingeschrieben sind. Dabei startet ein akademisches Jahr i.d.R. im Wintersemester.',
         link:   '',
@@ -48,19 +48,19 @@ const FAQDictionary = {
         name:   'Diagramm: Schwundfaktorentwicklung Vergleich',
         short:  'Diagramm zur Gegenüberstellung der Schwundfaktoren versch. Studiengänge über die Jahre hinweg',
         long:   'Das Diagramm zeigt die Entwicklung des Schwundfaktors verschiedener Studiengänge über die Jahre hinweg.',
-        link:   'https://aulis.hs-bremen.de/goto.php?target=file_2059055_download&client_id=hsbremen',
+        link:   '',
     },
     shrinkageFactorDevelopmentChart: {
         name:   'Diagramm: Schwundfaktorentwicklung',
         short:  'Diagramm zur Entwicklung des Schwundfaktors eines Studiengangs über die Jahre hinweg',
         long:   'Das Diagramm zeigt die Entwicklung des Schwundfaktors eines Studiengangs über die Jahre hinweg.',
-        link:   'https://aulis.hs-bremen.de/goto.php?target=file_2059055_download&client_id=hsbremen',
+        link:   '',
     },
     shrinkageFactorStudentsChart: {
         name:   'Diagramm: Schwundfaktorberechnung v. Studiengang in einem Jahr',
         short:  'Diagramm zur Anzeige der zugrundeliegenden Daten der Schwundfaktorberechnung eines Studiengangs für ein Jahr',
         long:   'Das Diagramm zeigt die zugrundeliegenden Daten der Schwundfaktorberechnung eines Studiengangs für ein Jahr, sowie die mittlere Übergangsquote. Dabei werden immer drei - in Regelstudienzeit bereits abgeschlossene - akademische Jahrgänge betrachtet. Beispielsweise: Bei einer Regelstudienzeit von 8 Semestern und für das Jahr 2020 wären dies die Jahrgänge 2015, 2016 und 2017.',
-        link:   'https://aulis.hs-bremen.de/goto.php?target=file_2059055_download&client_id=hsbremen',
+        link:   '',
     },
     courseOfStudyChart: {
         name:   'Diagramm: Studienverlauf',
