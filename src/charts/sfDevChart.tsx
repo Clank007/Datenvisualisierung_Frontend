@@ -137,9 +137,9 @@ const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
       <button 
                 onClick={downloadChart}
                 style={{
-                    position: 'absolute',
-                    bottom: 20,
-                    right: -290,
+                    position: 'relative',
+                    bottom: 0,
+                    right: '-50%',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer'
