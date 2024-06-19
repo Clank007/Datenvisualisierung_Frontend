@@ -1,7 +1,7 @@
 import { Chart } from 'react-google-charts';
 
 const SankeyChart = () => {
-  const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
+  const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
   
   const chartData = [
     ['From', 'To', 'Weight'],
@@ -12,6 +12,7 @@ const SankeyChart = () => {
     ['5. FS', '6. FS', 21],
     ['6. FS', '7. FS', 21],
     ['7. FS', '8. FS', 20],
+    ['8. FS', 'Absolventen', 19],
     ['2. FS', 'Fachwechsel oder Studienabbruch', 1],
     ['3. FS', 'Fachwechsel oder Studienabbruch', 2],
     ['4. FS', 'Fachwechsel oder Studienabbruch', 2],
@@ -20,12 +21,13 @@ const SankeyChart = () => {
 
   const chartOptions = {
     sankey: {
+      iterations: 0,
       height: 1500,
       link: { colorMode: 'gradient' },
       node: {
         colorMode: 'fixed',
         colors: colors,
-        nodePadding: 150,
+        nodePadding: 50,
         label: {
           fontSize: 20, // Increase this value for larger labels
         },
