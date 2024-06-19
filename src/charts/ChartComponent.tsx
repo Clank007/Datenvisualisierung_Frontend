@@ -1,7 +1,7 @@
 import { Chart } from 'react-google-charts';
 
 const ChartComponent = () => {
-  const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
+  const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
   
   const chartData = [
     ['From', 'To', 'Weight'],
@@ -12,6 +12,7 @@ const ChartComponent = () => {
     ['5. FS', '6. FS', 21],
     ['6. FS', '7. FS', 21],
     ['7. FS', '8. FS', 20],
+    ['8. FS', 'Absolventen', 19],
     ['2. FS', 'Fachwechsel oder Studienabbruch', 1],
     ['3. FS', 'Fachwechsel oder Studienabbruch', 2],
     ['4. FS', 'Fachwechsel oder Studienabbruch', 2],
@@ -20,6 +21,7 @@ const ChartComponent = () => {
 
   const chartOptions = {
     sankey: {
+      tooltip: {isHTML: false},
       height: 1500,
       link: { colorMode: 'gradient' },
       node: {
