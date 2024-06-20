@@ -15,6 +15,10 @@ import { schwundfaktorDaten } from "./helperData";
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { BsExclamationTriangleFill, BsFillExclamationTriangleFill } from "react-icons/bs";
+import FAQDictionary from "../util/FAQDictionary";
+import Infotip from "../components/tooltip";
+import { useNavigate } from "react-router-dom";
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 // register imported plugins from chart.js
@@ -31,10 +35,14 @@ ChartJS.register(
     ChartDataLabels
 );
 
+var dataIncomplete = false;
+
 const data = (sfData : SchwundfaktorFormat[]) => {
+    dataIncomplete = false;
     var colors = [RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT]
 
     const sfDatasets = sfData.map((row,i) => {
+        dataIncomplete = (row.faktor.includes(null)) ? true : dataIncomplete;
         return ({
             label: row.course,
             data: row.faktor,
@@ -135,7 +143,7 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
     useEffect(() => {
         //console.log('Component has mounted');
     }, []);
-
+     
     console.log(combinedData);
     const sfCoursesData = data(combinedData);
     return (
@@ -146,7 +154,8 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
                     options={options} 
                 />
             </div>
-            <button 
+            {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
+            <button
                 onClick={downloadChart}
                 style={{
                     position: 'relative',
