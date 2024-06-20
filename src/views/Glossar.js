@@ -4,7 +4,7 @@ import FAQDictionary from "../util/FAQDictionary";
 
 const Glossar = () => {
   return (
-    <Accordion alwaysOpen flush className="rounded-accordion ps-2">
+    <Accordion flush className="rounded-accordion ps-2">
       {(Object.values(FAQDictionary)).map((entry, index) => (
                 <Accordion.Item key={index} eventKey={index} className="rounded-accordion">
                     <Accordion.Header>{entry.name}</Accordion.Header>
