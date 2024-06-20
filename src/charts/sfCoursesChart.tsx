@@ -73,11 +73,41 @@ const data = (sfData : SchwundfaktorFormat[]) => {
         }
     };
 
+    /*const aimValueMaster = {
+        label: 'Zielwert Master',
+        data: schwundfaktorDaten[0].years.map(() => 1.1),
+        pointRadius: 0,
+        borderColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        borderDash: [5, 5],
+        plugins: {
+            datalabels: {
+                display: false,
+            },
+        }
+    };
+
+    const aimValueBachelor = {
+        label: 'Zielwert Bachelor',
+        data: schwundfaktorDaten[0].years.map(() => 1.3),
+        pointRadius: 0,
+        borderColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        borderDash: [5, 5],
+        plugins: {
+            datalabels: {
+                display: false,
+            },
+        }
+    };*/
+
     return {
         labels: schwundfaktorDaten[0].years, // to always show years, even when sfData is empty
         datasets: [
             ...sfDatasets,
-            ideallinie,
+            ideallinie/*,
+            aimValueBachelor,
+            aimValueMaster*/
         ],
     };
 };
