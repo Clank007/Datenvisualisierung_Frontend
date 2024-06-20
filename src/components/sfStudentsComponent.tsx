@@ -17,6 +17,7 @@ import { StudierendenVerlauf2020 } from '../charts/helperData';
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { RGB_VALS_CD_BLEND_TUERKIS_GRUEN } from '../util/color_constants';
 const {RGB_VALS_CD_BLAU, RGB_VALS_CD_TUERKIS, RGB_VALS_CD_GRUEN, RGB_VALS_CD_HELLGRUEN, RGB_VALS_CD_GELB, RGB_VALS_CD_ORANGE, RGB_VALS_CD_ROT, RGB_VALS_CD_VIOLETT} = require('../util/color_constants');
 
 // register imported plugins from chart.js
@@ -37,22 +38,20 @@ ChartJS.register(
 
 const data = () => {
     const rawData = StudierendenVerlauf2020[0];
-    const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_GRUEN, RGB_VALS_CD_ORANGE]
+    const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN]
 
     const kohortenDataset = rawData.kohorten.map((kohorte,i) => {
         return {
             type: 'bar' as const,
             label: kohorte.kohorte,
             data: kohorte.netStudents,
-            backgroundColor: "rgba("+colors[i]+",0.5)",
-            borderColor: "rgba("+colors[i]+",0.5)",
+            backgroundColor: "rgba("+colors[i]+",0.7)",
+            borderColor: "rgba("+colors[i]+",0.7)",
             datalabels: {
                 display: false,
             },
         };
     });
-
-    //TODO: Show diff between semesters for each kohorte
 
     const meanSuccessDataset = {
         type: 'line' as const,

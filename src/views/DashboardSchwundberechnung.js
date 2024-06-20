@@ -17,20 +17,20 @@ function DashboardSchwundberechnung(props) {
             <Card className="card-chart">
               <Card.Body>
                 <div>
-                  <SfCoursesComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfCoursesComponent>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xs='5'>
-            <Card className="card-chart">
-              <Card.Body>
-                <div>
                   <SfDevComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfDevComponent>
                 </div>
               </Card.Body>
             </Card>
-          </Col>
+        </Col>
+        <Col xs='5'>
+            <Card className="card-chart">
+              <Card.Body>
+                <div>
+                  <SfCoursesComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfCoursesComponent>
+                </div>
+              </Card.Body>
+            </Card>
+        </Col>
         </Row>
         <Row>
           <Col xs="10">
