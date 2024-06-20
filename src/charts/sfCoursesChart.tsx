@@ -19,6 +19,7 @@ import { BsExclamationTriangleFill, BsFillExclamationTriangleFill } from "react-
 import FAQDictionary from "../util/FAQDictionary";
 import Infotip from "../components/tooltip";
 import { useNavigate } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 // register imported plugins from chart.js
@@ -148,19 +149,20 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
     const sfCoursesData = data(combinedData);
     return (
         <React.Fragment>
-            <div ref={chartRef}>
-                <Line 
+            <div ref={chartRef} className="pe-0">
+                <Line
                     data={sfCoursesData}
                     options={options} 
                 />
             </div>
-            {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
+            <Row className="pe-0">
+                <Col>
+                    {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
+                </Col>
+            <Col className="pe-0" style={{display:'flex', justifyContent:'right'}}>
             <button
                 onClick={downloadChart}
                 style={{
-                    position: 'relative',
-                    bottom: 0,
-                    right: '-50%',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer'
@@ -169,6 +171,8 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
             >
                 <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
             </button>
+            </Col>
+            </Row>
         </React.Fragment>
     );
 };
