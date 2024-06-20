@@ -18,7 +18,7 @@ const Infotip = ({entry, type}) => {
         >
             {(type == "info") ? <BsInfoCircleFill/> : <BsExclamationTriangleFill/>}
         </a>
-        <Tooltip id={String(entry.name)}/>
+        <Tooltip style={{zIndex: "1000"}} id={String(entry.name)}/>
         </div>
     )
 }
