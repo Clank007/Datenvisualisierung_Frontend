@@ -13,6 +13,7 @@ import SchwundfaktorFormat from './helperTypes';
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { Col, Row } from 'react-bootstrap';
 const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 
@@ -129,17 +130,16 @@ const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
 
   return (
     <React.Fragment>
-      <div ref={chartRef}>
+      <div ref={chartRef} className="pe-0">
         <Line 
           data={calcData(sfData)}
           options={options(sfData)} />
       </div>
-      <button 
+      <Row className="pe-0">
+        <Col className="pe-0" style={{display:'flex', justifyContent:'right'}}>
+          <button 
                 onClick={downloadChart}
                 style={{
-                    position: 'relative',
-                    bottom: 0,
-                    right: '-50%',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer'
@@ -147,7 +147,9 @@ const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
                 title="Download Chart"
             >
                 <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
-            </button>
+          </button>
+        </Col>
+      </Row>
     </React.Fragment>
   );
 };

@@ -14,7 +14,7 @@ const SfCoursesComponent = (props: any) => {
     return (
         <div className='sfCoursesContainer'>
             <Col>
-                <Row className='sfCoursesChart'>
+                <Row className='sfCoursesChart pe-0'>
                     {chartData}
                 </Row>
             </Col>

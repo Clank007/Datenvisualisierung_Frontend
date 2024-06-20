@@ -8,7 +8,7 @@ const SfDevComponent = (props: any) => {
   return (
     <div className='sfDevContainer'>
       <Col>
-        <Row className='sfDevChart'>
+        <Row className='sfDevChart pe-0'>
           {chartData}
         </Row>
       </Col>
