@@ -63,33 +63,30 @@ const calcData = (sfData: SchwundfaktorFormat) => {
         },
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         borderDash: [5, 5]
       },
       { 
         label: 'Zielwert Bachelor',
         data: sfData.years.map(() => 1.3),
+        datalabels: {
+          display: false,
+        },
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
         backgroundColor: 'rgba(0, 0, 0, 0)',
         borderDash: [5, 5],
-        plugins: {
-          datalabels: {
-            display: false,
-          },
-        },
       },
       { 
         label: 'Zielwert Master',
         data: sfData.years.map(() => 1.1),
+        datalabels: {
+          display: false,
+        },
         pointRadius: 0,
         borderColor: 'rgba(0, 0, 0, 0.5)',
         backgroundColor: 'rgba(0, 0, 0, 0)',
         borderDash: [5, 5],
-        plugins: {
-          datalabels: {
-            display: false,
-          },
-        },
       },
     ]
   };
