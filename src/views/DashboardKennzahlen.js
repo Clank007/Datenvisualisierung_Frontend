@@ -1,4 +1,5 @@
 // react-bootstrap components
+import { useEffect, useState } from "react";
 import {
   Card,
   Col,
@@ -6,9 +7,39 @@ import {
   Row
 } from "react-bootstrap";
 
+import { fetchStandardPeriodOfStudy } from "../util/api_calls";
+
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 function DashboardKennzahlen() {
+  const [standardPeriodOfStudy, setStandardPeriodOfStudy] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const standardPeriodOfStudyResult = await fetchStandardPeriodOfStudy();
+        console.log(standardPeriodOfStudyResult);
+        setStandardPeriodOfStudy(standardPeriodOfStudyResult);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
+
   return (
     <>
       <Container fluid>
