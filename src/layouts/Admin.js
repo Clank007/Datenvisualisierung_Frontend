@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import AdminNavbar from "../components/AdminNavbar";
@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 import routes from "../routes.js";
 
 import { schwundfaktorDaten } from '../charts/helperData';
+import { fetchCourseData } from "../util/api_calls";
 
 /**
  * Parent component containing Sidebar, Navbar and Dashboards.
@@ -48,15 +49,45 @@ function Admin() {
     });
   };
 
+  // API Calls
+  const [courseData, setCourseData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const courseDataResult = await fetchCourseData();
+        setCourseData(courseDataResult);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   /**
-   * Maps options from schwundfaktorDaten to value, label and data fields.
-   * This is passed down to AdminNavbar.
-   */
-  const baseCourseOptions = schwundfaktorDaten.map((course, index) => ({
-    value: String(index),
-    label: course.course,
-    data: null
-  }));
+  * Maps options from courseDataResult to value, label and data fields.
+  * This is passed down to AdminNavbar.
+  */
+  const baseCourseOptions = courseData.map((course, index) => (
+    {
+      value: String(index),
+      label: course.shortened,
+      data: null
+    }
+  ));
 
 
   /**
@@ -68,7 +99,6 @@ function Admin() {
   const handleBaseCourseChange = (selOption) => {
     if (selOption !== null) {
       setSelectedBaseCourses(schwundfaktorDaten[Number(selOption.value)]);
-      console.log(selectedBaseCourse);
     }
   };
 
@@ -76,11 +106,11 @@ function Admin() {
    * Maps options from schwundfaktorDaten to value and label fields.
    * This is passed down to AdminNavbar.
    */
-  const coursesOptions = schwundfaktorDaten
-    .filter((course) => course.course !== selectedBaseCourse.course)
+  const coursesOptions = courseData
+    .filter((course) => course.shortened !== selectedBaseCourse.course)
     .map((course, index) => ({
         value: String(index),
-        label: course.course
+        label: course.shortened
     }));
 
   /**

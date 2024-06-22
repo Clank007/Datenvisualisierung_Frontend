@@ -11,7 +11,7 @@ import { fetchStandardPeriodOfStudy } from "../util/api_calls";
 
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
-function DashboardKennzahlen() {
+function DashboardKennzahlen(props) {
   const [standardPeriodOfStudy, setStandardPeriodOfStudy] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,13 +32,18 @@ function DashboardKennzahlen() {
     fetchData();
   }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const currentCourseOfStudy = standardPeriodOfStudy.findLast(obj => {
+    //return obj.courseOfStudy == props.selectedBaseCourse.course;
+    return obj.courseOfStudy == "DSI";
+  })
 
   return (
     <>
@@ -57,8 +62,8 @@ function DashboardKennzahlen() {
                   </Col>
                   <Col xs="8">
                     <div className="numbers">
-                      <p className="card-category">Studierende gesamt<br></br>(absolut/relativ)</p>
-                      <Card.Title as="h3">111 / 100%</Card.Title>
+                      <p className="card-category">Studierende gesamt<br></br>(absolut&thinsp;/&thinsp;relativ)</p>
+                      <Card.Title as="h3">{currentCourseOfStudy.overallStudents}&thinsp;/&thinsp;{currentCourseOfStudy.overallStudentsPercentage}%</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -78,8 +83,8 @@ function DashboardKennzahlen() {
                   </Col>
                   <Col xs="8">
                     <div className="numbers">
-                      <p className="card-category">Studierende in RSZ<br></br>(absolut/relativ)</p>
-                      <Card.Title as="h3">100 / 90%</Card.Title>
+                      <p className="card-category">Studierende in RSZ<br></br>(absolut&thinsp;/&thinsp;relativ)</p>
+                      <Card.Title as="h3">{currentCourseOfStudy.studentsInStandardPeriodOfStudy}&thinsp;/&thinsp;{currentCourseOfStudy.studentsInStandardPeriodOfStudyPercentage}%</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -99,8 +104,8 @@ function DashboardKennzahlen() {
                   </Col>
                   <Col xs="8">
                     <div className="numbers">
-                      <p className="card-category">Studierende in RSZ+2<br></br>(absolut/relativ)</p>
-                      <Card.Title as="h3">111 / 100% </Card.Title>
+                      <p className="card-category">Studierende in RSZ+2<br></br>(absolut&thinsp;/&thinsp;relativ)</p>
+                      <Card.Title as="h3">{currentCourseOfStudy.studentsInStandardPeriodOfStudyPlusTwo}&thinsp;/&thinsp;{currentCourseOfStudy.studentsInStandardPeriodOfStudyPlusTwoPercentage}%</Card.Title>
                     </div>
                   </Col>
                 </Row>
