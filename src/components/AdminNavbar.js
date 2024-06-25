@@ -39,6 +39,13 @@ function Header(props) {
     navigate('/login');
   };
 
+  /**
+   * Function to display longLabel in Options and label in searchbar.
+   */
+  const handleOptionsDisplay = ({ label, labelLong }, {context}) => {
+    return context === 'menu' ? labelLong : label;
+  }
+
 
   return (
     <Navbar bg="light" expand="lg">
@@ -54,6 +61,7 @@ function Header(props) {
                 isSearchable={true}
                 options={props.baseCourseOptions}
                 onChange={props.handleBaseCourseChange}
+                formatOptionLabel={handleOptionsDisplay}
                 defaultValue={props.baseCourseOptions[6]}
             />)}
           {showCompareSelect &&
@@ -67,6 +75,7 @@ function Header(props) {
               isSearchable={true}
               isMulti={true}
               options={props.coursesOptions}
+              formatOptionLabel={handleOptionsDisplay}
               onChange={props.handleCoursesChange}
               placeholder={"Studiengänge wählen..."}
               hideSelectedOptions={true}

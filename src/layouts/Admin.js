@@ -85,6 +85,7 @@ function Admin() {
     {
       value: String(index),
       label: course.shortened,
+      labelLong: course.shortened + " - " + course.course,
       data: null
     }
   ));
@@ -110,7 +111,8 @@ function Admin() {
     .filter((course) => course.shortened !== selectedBaseCourse.course)
     .map((course, index) => ({
         value: String(index),
-        label: course.shortened
+        label: course.shortened,
+        labelLong: course.shortened + " - " + course.course,
     }));
 
   /**
