@@ -102,7 +102,7 @@ function Header(props) {
             </Navbar.Brand>
             <div style={selectStyles.compareSelect}>
               <Select
-                  className="ps-3 pe-3"
+                  className="ps-3"
                   isClearable={true}
                   isSearchable={true}
                   isMulti={true}

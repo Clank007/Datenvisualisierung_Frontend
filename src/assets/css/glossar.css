@@ -1,3 +1,7 @@
+.rounded-accordion {
+  width: 91%;
+}
+
 .rounded-accordion .accordion-item {
     border-radius: 0.375rem; /* Adjust the value to your preference */
     overflow: hidden; /* Ensure the rounded corners are visible */
@@ -19,6 +23,8 @@
     border-bottom-right-radius: 0.375rem;
     margin: 0; /* Remove margin */
     padding: 0.75rem 1.25rem; /* Adjust padding as needed */
+    padding-left: 20px; /* Add left padding */
+    padding-right: 400px; /* Add right padding */
   }
   
   /* Additional style to handle the flush property */
@@ -33,6 +39,7 @@
 .rounded-accordion .accordion-button:not(.collapsed) {
     background-color: white; /* Change to your desired color */
     color: black; /* Change text color if needed */
+    font-weight: bold;
   }
   
 .rounded-accordion .accordion-button:focus {

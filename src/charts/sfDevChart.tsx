@@ -55,17 +55,17 @@ const calcData = (sfData: SchwundfaktorFormat) => {
           formatter: function(value: any, context: any) { return String(value).replace('.', ','); },
         },
       },
-      {
-        label: 'Idealwert',
-        data: sfData.years.map(() => 1),
-        datalabels: {
-          display: false,
-        },
-        pointRadius: 0,
-        borderColor: 'rgba(0, 0, 0, 0.5)',
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-        borderDash: [5, 5]
-      },
+      // {
+      //   label: 'Idealwert',
+      //   data: sfData.years.map(() => 1),
+      //   datalabels: {
+      //     display: false,
+      //   },
+      //   pointRadius: 0,
+      //   borderColor: 'rgba(0, 0, 0, 0.5)',
+      //   backgroundColor: 'rgba(0, 0, 0, 0)',
+      //   borderDash: [5, 5]
+      // },
       { 
         label: 'Zielwert Bachelor',
         data: sfData.years.map(() => 1.3),
