@@ -53,11 +53,11 @@ function Header(props) {
    */
   const selectStyles = {
     baseSelect: {
-      "min-width": "8em",
-      "max-width": "10%",
+      "minWidth": "8em",
+      "maxWidth": "10%",
     },
     compareSelect: {
-      "max-width": "30%",
+      "maxWidth": "30%",
     },
   };
 
@@ -126,7 +126,7 @@ function Header(props) {
               className="ps-3 pe-3"
               isClearable={false}
               isSearchable={true}
-              options={props.yearOptions}
+              options={props.yearsOptions}
               placeholder={"Jahr wählen..."}
               onChange={props.handleYearChange}
             />

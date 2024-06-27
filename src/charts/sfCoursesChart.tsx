@@ -175,7 +175,7 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
         //console.log('Component has mounted');
     }, []);
      
-    console.log(combinedData);
+    // console.log(combinedData);
     const sfCoursesData = data(combinedData);
     return (
         <React.Fragment>

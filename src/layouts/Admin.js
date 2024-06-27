@@ -26,7 +26,7 @@ function Admin() {
    * Passed to the components in each route in getRoutes().
    */
   const [selectedCourses, setSelectedCourses] = React.useState([]);
-  const [selectedYear, setYear] = React.useState(null);
+  const [selectedYear, setSelectedYear] = React.useState(null);
  
   const mainPanel = React.useRef(null);
   /**
@@ -97,6 +97,18 @@ function Admin() {
     }
   ));
 
+  /**
+   * Maps options from yearsData to value and label fields.
+   * This is passed down to AdminNavbar.
+   */
+  const yearsOptions = selectedBaseCourse.years
+    .filter((year, index) => selectedBaseCourse.faktor[index] !== null)
+    .map((year, index) => ({
+      value: String(year),
+      label: year,
+      data: null,
+  }));
+
 
   /**
    * Function to handle the change in the base course Select component.
@@ -107,6 +119,20 @@ function Admin() {
   const handleBaseCourseChange = (selOption) => {
     if (selOption !== null) {
       setSelectedBaseCourses(mapBECourseToTempData(selOption.label));
+      // Could also just be a constant array since the years are the same for all courses as of now
+      setYearsData(mapBECourseToTempData(selOption.label));
+      setSelectedYear(null);
+    }
+  };
+
+  /**
+   * Function to handle the change in the year Select component.
+   * This is passed down to AdminNavbar.
+   * @param selOption 
+   */
+  const handleYearChange = (selOption) => {
+    if (selOption !== null) {
+      setSelectedYear(selOption.label);
     }
   };
 
@@ -155,6 +181,7 @@ function Admin() {
           <AdminNavbar 
               baseCourseOptions={baseCourseOptions} handleBaseCourseChange={handleBaseCourseChange}
               coursesOptions={coursesOptions} handleCoursesChange={handleCoursesChange}
+              yearsOptions={yearsOptions} handleYearChange={handleYearChange}
           />
           <div className="content">
             <Routes>{getRoutes(routes)}</Routes>
