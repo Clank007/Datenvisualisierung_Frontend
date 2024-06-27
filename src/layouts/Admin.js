@@ -8,6 +8,7 @@ import routes from "../routes.js";
 
 import { schwundfaktorDaten } from '../charts/helperData';
 import { fetchCourseData } from "../util/api_calls";
+import SchwundfaktorFormat from "../charts/helperTypes";
 
 /**
  * Parent component containing Sidebar, Navbar and Dashboards.
@@ -105,9 +106,19 @@ function Admin() {
    */
   const handleBaseCourseChange = (selOption) => {
     if (selOption !== null) {
-      setSelectedBaseCourses(schwundfaktorDaten[Number(selOption.value)]);
+      setSelectedBaseCourses(mapBECourseToTempData(selOption.label));
     }
   };
+
+
+  /**
+   * Selects the corresponding shrinkageFactor data from the current constants by the selected course from BE
+   * @param {string} beCourse 
+   * @returns {SchwundfaktorFormat}
+   */
+  function mapBECourseToTempData(beCourse) {
+    return schwundfaktorDaten.find((entry) => entry.course === beCourse );
+  }
 
   /**
    * Maps options from schwundfaktorDaten to value and label fields.
@@ -129,7 +140,7 @@ function Admin() {
    */
   function handleCoursesChange(selOptions) {
       if (selOptions !== null) {
-          const selCourses = selOptions.map((selOption) => schwundfaktorDaten[Number(selOption.value)]);
+          const selCourses = selOptions.map((selOption) => mapBECourseToTempData(selOption.label));
           setSelectedCourses(selCourses);
       } else {
           setSelectedCourses([]);

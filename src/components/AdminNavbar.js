@@ -92,7 +92,7 @@ function Header(props) {
                 onChange={props.handleBaseCourseChange}
                 styles={customStyles}
                 formatOptionLabel={handleOptionsDisplay}
-                defaultValue={props.baseCourseOptions[6]}
+                defaultValue={props.baseCourseOptions[0]}
             />
           </div>)}
           {showCompareSelect &&
