@@ -25,6 +25,7 @@ function Admin() {
    * Passed to the components in each route in getRoutes().
    */
   const [selectedCourses, setSelectedCourses] = React.useState([]);
+  const [selectedYear, setYear] = React.useState(null);
  
   const mainPanel = React.useRef(null);
   /**
@@ -39,7 +40,11 @@ function Admin() {
         return (
           <Route
             path={prop.path}
-            element={<prop.component selectedBaseCourse={selectedBaseCourse} selectedCourses={selectedCourses}/>}
+            element={<prop.component 
+              selectedBaseCourse={selectedBaseCourse} 
+              selectedCourses={selectedCourses}
+              selectedYear={selectedYear}/>
+            }
             key={key}
           />
         );
@@ -53,6 +58,7 @@ function Admin() {
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [yearsData, setYearsData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

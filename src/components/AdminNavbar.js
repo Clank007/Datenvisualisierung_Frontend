@@ -17,6 +17,8 @@ function Header(props) {
 
   const showCompareSelect = location.pathname == '/admin/schwundberechnung';
   const showBaseSelect = location.pathname !='/admin/glossar';
+  const showYearSelect = location.pathname == '/admin/schwundberechnung' ||
+                         location.pathname == '/admin/studienverlauf';  
 
   /**
    * Function to get name (= name in sidebar) from current route.
@@ -40,7 +42,7 @@ function Header(props) {
   };
 
   /**
-   * Function to display longLabel in Options and label in searchbar.
+   * Function to display longLabel in Options and label in dropdown searchbar.
    */
   const handleOptionsDisplay = ({ label, labelLong }, {context}) => {
     return context === 'menu' ? labelLong : label;
@@ -81,6 +83,21 @@ function Header(props) {
               hideSelectedOptions={true}
               // isDisabled={!showCompareSelect}
           />
+          </React.Fragment>)
+          }
+          {showYearSelect &&
+          (<React.Fragment>
+            <Navbar.Brand className="mr-2 ps-3" >
+              {"Jahr:"}
+            </Navbar.Brand>
+            <Select
+              className="ps-3 pe-3"
+              isClearable={false}
+              isSearchable={true}
+              options={props.yearOptions}
+              placeholder={"Jahr wählen..."}
+              onChange={props.handleYearChange}
+            />
           </React.Fragment>)
           }
           <Nav className="ms-auto" navbar>
