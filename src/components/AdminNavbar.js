@@ -46,8 +46,34 @@ function Header(props) {
    */
   const handleOptionsDisplay = ({ label, labelLong }, {context}) => {
     return context === 'menu' ? labelLong : label;
-  }
+  };
 
+  /**
+   * Styles to control the width of the select components.
+   */
+  const selectStyles = {
+    baseSelect: {
+      "min-width": "8em",
+      "max-width": "10%",
+    },
+    compareSelect: {
+      "max-width": "30%",
+    },
+  };
+
+  const customStyles = {
+    control: (provided) => ({ //Select Input Field
+      ...provided,
+    }),
+    menu: (provided) => ({ //Dropdown menu
+      ...provided,
+      width: 460,
+    }),
+    option: (provided) => ({ //Options in dropdown menu
+      ...provided,
+      whiteSpace: 'nowrap'
+    })
+  };
 
   return (
     <Navbar bg="light" expand="lg">
@@ -58,31 +84,36 @@ function Header(props) {
           </Navbar.Brand>
         </div>
           {showBaseSelect &&
-          (<Select
+          (<div style={selectStyles.baseSelect}>
+            <Select
                 isClearable={false}
                 isSearchable={true}
                 options={props.baseCourseOptions}
                 onChange={props.handleBaseCourseChange}
+                styles={customStyles}
                 formatOptionLabel={handleOptionsDisplay}
                 defaultValue={props.baseCourseOptions[6]}
-            />)}
+            />
+          </div>)}
           {showCompareSelect &&
           (<React.Fragment>
-          <Navbar.Brand className="mr-2 ps-3" >
-            {"Vergleich mit:"}
-          </Navbar.Brand>
-          <Select
-              className="ps-3 pe-3"
-              isClearable={true}
-              isSearchable={true}
-              isMulti={true}
-              options={props.coursesOptions}
-              formatOptionLabel={handleOptionsDisplay}
-              onChange={props.handleCoursesChange}
-              placeholder={"Studiengänge wählen..."}
-              hideSelectedOptions={true}
-              // isDisabled={!showCompareSelect}
-          />
+            <Navbar.Brand className="mr-2 ps-3" >
+              {"Vergleich mit:"}
+            </Navbar.Brand>
+            <div style={selectStyles.compareSelect}>
+              <Select
+                  className="ps-3 pe-3"
+                  isClearable={true}
+                  isSearchable={true}
+                  isMulti={true}
+                  options={props.coursesOptions}
+                  formatOptionLabel={handleOptionsDisplay}
+                  onChange={props.handleCoursesChange}
+                  placeholder={"Studiengänge wählen..."}
+                  hideSelectedOptions={true}
+                  // isDisabled={!showCompareSelect}
+              />
+            </div>
           </React.Fragment>)
           }
           {showYearSelect &&
