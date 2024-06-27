@@ -14,6 +14,8 @@ import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Col, Row } from 'react-bootstrap';
+import FAQDictionary from '../util/FAQDictionary';
+import Infotip from '../components/tooltip';
 const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 
@@ -30,7 +32,11 @@ ChartJS.register(
     ChartDataLabels
 );
 
+var dataIncomplete = false;
+
 const calcData = (sfData: SchwundfaktorFormat) => {
+  dataIncomplete = sfData.faktor.includes(null) ? true : false;
+
   const preppedData = {
     labels: sfData.years,
     datasets: [
@@ -159,6 +165,9 @@ const sfDevChart = ({sfData}: {sfData: SchwundfaktorFormat}) => {
           options={options(sfData)} />
       </div>
       <Row className="pe-0">
+        <Col>
+            {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
+        </Col>
         <Col className="pe-0" style={{display:'flex', justifyContent:'right'}}>
           <button 
                 onClick={downloadChart}

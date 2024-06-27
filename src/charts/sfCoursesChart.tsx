@@ -186,9 +186,9 @@ const sfCoursesChart = ({sfData}: {sfData: SchwundfaktorFormat[]}, {selectedBase
                 />
             </div>
             <Row className="pe-0">
-                <Col>
-                    {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
-                </Col>
+            <Col>
+                {(dataIncomplete) ? <Infotip entry={FAQDictionary.dataIncomplete} type="warning"/> : ""}
+            </Col>
             <Col className="pe-0" style={{display:'flex', justifyContent:'right'}}>
             <button
                 onClick={downloadChart}
