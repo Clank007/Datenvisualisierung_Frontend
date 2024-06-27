@@ -111,6 +111,7 @@ function Header(props) {
                   onChange={props.handleCoursesChange}
                   placeholder={"Studiengänge wählen..."}
                   hideSelectedOptions={true}
+                  styles={customStyles}
                   // isDisabled={!showCompareSelect}
               />
             </div>
