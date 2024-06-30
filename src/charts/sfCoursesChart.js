@@ -55,7 +55,6 @@ const data = (sfData) => {
       }, {});
 
     var sfDatasets = Object.entries(groupedByCourse).map(([course, data], i) => {
-        console.log(data);
         //Log if all datasets have the same length
         dataIncomplete = (data.map(entry => entry.year).length < years.length) ? true : dataIncomplete;
         return ({
@@ -168,8 +167,6 @@ const sfCoursesChart = (selectedCourses, selectedBaseCourse) => {
         ...selectedBaseCourse,
         ...selectedCourses
     ];
-
-    console.log(combinedData);
 
     const downloadChart = () => {
         const chartElement = chartRef.current;

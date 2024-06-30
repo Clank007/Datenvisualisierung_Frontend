@@ -1,4 +1,4 @@
-import { Chart } from 'react-chartjs-2';
+import { Chart, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, 
          CategoryScale,
          BarElement,
@@ -36,13 +36,13 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const data = () => {
-    const rawData = StudierendenVerlauf2020[0];
+const data = (sfData) => {
     const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN]
+    console.log(sfData);
 
-    const kohortenDataset = rawData.kohorten.map((kohorte,i) => {
+    const kohortenDataset = sfData.kohorten.map((kohorte,i) => {
         return {
-            type: 'bar' as const,
+            type: 'bar',
             label: kohorte.kohorte,
             data: kohorte.netStudents,
             backgroundColor: "rgba("+colors[i]+",0.7)",
@@ -54,11 +54,11 @@ const data = () => {
     });
 
     const meanSuccessDataset = {
-        type: 'line' as const,
+        type: 'line',
         label: 'Mittlere Übergangsquote',
         backgroundColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
         borderColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
-        data: rawData.meanSuccess,
+        data: sfData.meanSuccess,
         yAxisID: 'yAxis',
         datalabels: {
             display: true,
@@ -66,17 +66,17 @@ const data = () => {
             borderRadius: 3,
             color: 'rgb(255, 255, 255)',
             font: {
-                weight: 'bold' as const,
+                weight: 'bold',
             },
             padding: 6,
             clamp: true,
-            align: 'top' as const,
-            formatter: function(value: any, context: any) { return String(value).replace('.', ','); },
+            align: 'top',
+            formatter: function(value, context) { return String(value).replace('.', ','); },
         }
     };
 
     return {
-        labels: rawData.semesters,
+        labels: sfData.semesters,
         datasets: [
             meanSuccessDataset,
             ...kohortenDataset,
@@ -84,7 +84,7 @@ const data = () => {
     };
 };
 
-function detailedTooltipLabel(context: any) {
+function detailedTooltipLabel(context) {
     // let label = context.dataset.label || '';
     //only change bar tooltip labels
     // if (context.dataset.type === 'bar') {
@@ -118,9 +118,9 @@ const options = {
             },
         },
         yAxis: {
-            type: 'linear' as const,
+            type: 'linear',
             display: true,
-            position: 'right' as const,
+            position: 'right',
             title: {
                 display: true,
                 text: 'Ø Übergangsquote',
@@ -128,13 +128,13 @@ const options = {
         },
     },
     interaction : {
-        mode: 'index' as const,
+        mode: 'index',
         intersect: false,
     },
     plugins: {
         datalabels: {
-            anchor: 'center' as const,
-            align: 'center' as const,
+            anchor: 'center',
+            align: 'center',
         },
         legend: {
             display: true,
@@ -145,7 +145,7 @@ const options = {
             color: 'black',
             font: {
               size: 24,
-              weight: 'normal' as any,
+              weight: 'normal',
             }
         },
         // tooltip: {
@@ -175,7 +175,7 @@ const options = {
     },
 };
 
-const SfStudentsComponent = (props: any) => {
+const SfStudentsComponent = (props) => {
     const chartRef = useRef(null);
 
     const downloadChart = () => {
@@ -194,32 +194,42 @@ const SfStudentsComponent = (props: any) => {
         //console.log('Component has mounted');
     }, []);
 
-    // use props.selectedBaseCourse for selected course
-    return (
-        <React.Fragment>
-            <div ref={chartRef}>
-                <Chart 
-                    type='bar' 
-                    data={data()} 
-                    options={options} 
+    if (props.selectedYear === null) {
+        //return placeholder chart
+        return (
+            <React.Fragment>
+                <Line
+                    data={{ labels: [2020, 2021, 2022, 2023, 2024], datasets: [{data: Array(5)}]}}
+                    options={options}
                 />
-            </div>
-            <button 
-                onClick={downloadChart}
-                style={{
-                    position: 'absolute',
-                    bottom: 10,
-                    right: 10,
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer'
-                }}
-                title="Download Chart"
-            >
-                <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
-            </button>
-        </React.Fragment>
-    )
-};
+            </React.Fragment>
+        );
+    } else {
+        return (
+            <React.Fragment>
+                <div ref={chartRef}>
+                    <Chart 
+                        type='bar' 
+                        data={data(props.selectedYear)} 
+                        options={options} 
+                    />
+                </div>
+                <button 
+                    onClick={downloadChart}
+                    style={{
+                        position: 'absolute',
+                        bottom: 10,
+                        right: 10,
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer'
+                    }}
+                    title="Download Chart"
+                >
+                    <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
+                </button>
+            </React.Fragment>
+        )};
+}
 
 export default SfStudentsComponent;

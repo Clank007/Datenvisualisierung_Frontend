@@ -32,17 +32,17 @@ function DashboardSchwundberechnung(props) {
             </Card>
         </Col>
         </Row>
-        {/* <Row>
+        <Row>
           <Col xs="10">
             <Card className="card-chart">
               <Card.Body>
                 <div>
-                  <SfStudentsComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfStudentsComponent>
+                  <SfStudentsComponent selectedYear={props.selectedYear}></SfStudentsComponent>
                 </div>
               </Card.Body>
             </Card>
           </Col>
-        </Row> */}
+        </Row>
       </Container>
     </>
   );

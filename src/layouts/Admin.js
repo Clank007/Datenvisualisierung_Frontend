@@ -131,7 +131,7 @@ function Admin() {
           //Set available years based on selected base course
           setYearsData(selectedBaseCourse.map((entry) => entry.year));
           //Reset selected year
-          setSelectedYear(yearsData[0]);
+          setSelectedYear(selectedBaseCourse[0]);
         })
         .catch((error) => {
           setError(error.message);
@@ -146,8 +146,10 @@ function Admin() {
    */
   const handleYearChange = (selOption) => {
     if (selOption !== null) {
-      setSelectedYear(selOption.label);
-      //TODO: change data for development chart and pass it down via adminnavbar #fuck clean coding
+      const selYear = selectedBaseCourse.find((entry) => entry.year === selOption.label);
+      if (selYear !== undefined) {
+        setSelectedYear(selYear);
+      }
     }
   };
 
