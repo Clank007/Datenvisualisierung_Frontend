@@ -22,7 +22,7 @@ function DashboardSchwundberechnung(props) {
               </Card.Body>
             </Card>
         </Col>
-        <Col xs='5'>
+        {/* <Col xs='5'>
             <Card className="card-chart">
               <Card.Body>
                 <div>
@@ -30,9 +30,9 @@ function DashboardSchwundberechnung(props) {
                 </div>
               </Card.Body>
             </Card>
-        </Col>
+        </Col> */}
         </Row>
-        <Row>
+        {/* <Row>
           <Col xs="10">
             <Card className="card-chart">
               <Card.Body>
@@ -42,7 +42,7 @@ function DashboardSchwundberechnung(props) {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </>
   );

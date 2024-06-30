@@ -112,7 +112,6 @@ function Header(props) {
                   placeholder={"Studiengänge wählen..."}
                   hideSelectedOptions={true}
                   styles={customStyles}
-                  // isDisabled={!showCompareSelect}
               />
             </div>
           </React.Fragment>)
