@@ -155,18 +155,13 @@ function Admin() {
    * Maps options from courseData to value and label fields for select option.
    * This is passed down to AdminNavbar.
    */
-  const coursesOptions = () => {
-    if (selectedBaseCourse) {
-      return courseData
+  const coursesOptions = courseData
         .filter((course) => course.shortened !== selectedBaseCourse[0].course)
         .map((course, index) => ({
           value: String(index),
           label: course.shortened,
           labelLong: course.shortened + " - " + course.course,
-      }));
-    }
-    return [];
-  }
+  }));
 
   /**
    * Function to handle the change in the comparative courses Select component.
@@ -175,13 +170,12 @@ function Admin() {
    * @param selOption 
    */
   function handleCoursesChange(selOptions) {
-    let selCourses = [];
     if (selOptions !== null) {
         //One giant call and throw not needed away instead of multiple single calls
-        fetchReportingData()
+        fetchReportingData(undefined, undefined)
           .then((data) => {
             const selCoursesNames = selOptions.map((selection) => selection.label);
-            selCourses = data.filter((entry) => selCoursesNames.includes(entry.course));
+            let selCourses = data.filter((entry) => selCoursesNames.includes(entry.course));
             // Sort selCourses by "course" and then by "year" in ascending order
             selCourses.sort((a, b) => {
               if (a.course < b.course) return -1;
@@ -189,12 +183,14 @@ function Admin() {
               // If courses are equal, compare by year
               return a.year - b.year;
             });
+            setSelectedCourses(selCourses);
           })
           .catch((error) => {
             setError(error.message);
           });
+    } else {
+      setSelectedCourses([]);
     }
-    setSelectedCourses(selCourses);
   };
 
   return (

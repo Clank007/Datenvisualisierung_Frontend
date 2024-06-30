@@ -2,15 +2,10 @@ import { Col, Row } from "react-bootstrap";
 import "../assets/css/sfCoursesComponent.css";
 import sfCoursesChart from "../charts/sfCoursesChart";
 
-type SelectOption = {
-    value: string;
-    label: string;
-};
+const SfCoursesComponent = (props) => {
 
-const SfCoursesComponent = (props: any) => {
+    const chartData = sfCoursesChart(props.selectedCourses, props.selectedBaseCourse);
 
-    const chartData = sfCoursesChart({ sfData: props.selectedCourses}, {selectedBaseCourse: props.selectedBaseCourse});
-    
     return (
         <div className='sfCoursesContainer'>
             <Col>
@@ -19,7 +14,7 @@ const SfCoursesComponent = (props: any) => {
                 </Row>
             </Col>
         </div>
-    )
-};
+    );
+}
 
 export default SfCoursesComponent;

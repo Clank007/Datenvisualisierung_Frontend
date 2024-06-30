@@ -67,7 +67,6 @@ const calcData = (sfData) => {
     ]
   };
 
-  console.log(sfData[0].degree);
   if (sfData[0].degree.includes('B')) {
     preppedData.datasets.push({
       label: 'Zielwert Bachelor',
@@ -90,7 +89,7 @@ const calcData = (sfData) => {
       pointRadius: 0,
       borderColor: 'rgba(0, 0, 0, 0.5)',
       backgroundColor: 'rgba(0, 0, 0, 0)',
-      borderDash: [5, 5],
+      borderDash: [12, 12],
     });
   };
 
