@@ -1,11 +1,12 @@
 import { BsExclamationTriangleFill, BsInfoCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import { OperationCanceledException } from "typescript";
 
 const Infotip = ({entry, type}) => {
     const navigate = useNavigate();
     const navigateToGlossar = () => {
-        navigate("/admin/glossar");
+        navigate("/admin/glossar", {state: { openAccordion: entry.name} });
     }
 
     const htmlContent = `<b>${entry.name}</b><br/>${entry.short}`;

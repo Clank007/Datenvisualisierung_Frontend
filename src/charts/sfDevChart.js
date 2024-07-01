@@ -15,7 +15,7 @@ import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Col, Row } from 'react-bootstrap';
 import FAQDictionary from '../util/FAQDictionary';
-import Infotip from '../components/tooltip';
+import Infotip from '../components/Infotip';
 const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
 

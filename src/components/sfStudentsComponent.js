@@ -13,7 +13,6 @@ import { Chart as ChartJS,
          BarController,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { StudierendenVerlauf2020 } from '../charts/helperData';
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -104,7 +103,7 @@ function detailedTooltipLabel(context) {
     //                 return label;
 };
 
-const options = {
+const options = (sfData) => ({
     scales: {
         x: {
             stacked: true,
@@ -141,7 +140,7 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Schwundfaktorberechnung DSI 2020',
+            text: `Schwundfaktorberechnung ${sfData.course} ${sfData.year}`,
             color: 'black',
             font: {
               size: 24,
@@ -173,7 +172,7 @@ const options = {
         //     },
         // },
     },
-};
+});
 
 const SfStudentsComponent = (props) => {
     const chartRef = useRef(null);
@@ -200,7 +199,7 @@ const SfStudentsComponent = (props) => {
             <React.Fragment>
                 <Line
                     data={{ labels: [2020, 2021, 2022, 2023, 2024], datasets: [{data: Array(5)}]}}
-                    options={options}
+                    options={options({course: 'Kurs', year: '2020'})}
                 />
             </React.Fragment>
         );
@@ -211,7 +210,7 @@ const SfStudentsComponent = (props) => {
                     <Chart 
                         type='bar' 
                         data={data(props.selectedYear)} 
-                        options={options} 
+                        options={options(props.selectedYear)} 
                     />
                 </div>
                 <button 

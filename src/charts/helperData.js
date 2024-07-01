@@ -1,6 +1,6 @@
 import SchwundfaktorFormat from "./helperTypes";
 
-export const schwundfaktorDaten : SchwundfaktorFormat[] = [
+export const schwundfaktorDaten = [
     new SchwundfaktorFormat( "ATMECH B.Eng.", [2020, 2021, 2022, 2023, 2024], [ 1.2780, 1.3910, 1.3622, 1.3365, 1.3411 ]),
     new SchwundfaktorFormat( "ATMEI", [2020, 2021, 2022, 2023, 2024], [ null, null, 1.3622, 1.3365, 1.3411]),
     new SchwundfaktorFormat( "ATM D", [2020, 2021, 2022, 2023, 2024], [ null, null, null, null, 1.1392]),
