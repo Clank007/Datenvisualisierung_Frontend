@@ -127,11 +127,11 @@ function Admin() {
         const yearMatch = item.year.match(/\d{4}/);
         return yearMatch ? yearMatch[0] : null;
       })
-      .filter(year => year !== null)
+      .filter(year => year !== null) // Remove any null values
       .map((year) => ({
         value: year,
         label:year
-      })); // Remove any null values
+      })); 
 
   if (selectedCohort == null) {
     setSelectedCohort(cohortOptions[0].label)

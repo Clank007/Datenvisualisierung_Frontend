@@ -144,7 +144,7 @@ function Header(props) {
               options={props.cohortOptions}
               placeholder={"Kohorte wählen..."}
               onChange={props.handleCohortChange}
-              defaultValue={props.cohortOptions[0]}
+              // defaultValue={props.cohortOptions[0]}
             />
           </React.Fragment>)
           }

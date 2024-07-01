@@ -1,6 +1,7 @@
 import { Chart } from 'react-google-charts';
 import { fetchStudyProgressAnalysis } from '../util/api_calls';
 import { useEffect, useState } from 'react';
+import { useAccordionButton } from 'react-bootstrap';
 
 // Function to filter based on course and year
 function filterByCourseAndYear(data, targetCourse, targetYear) {
@@ -42,29 +43,39 @@ const SankeyChart = (props) => {
     return <div>Error: {error}</div>;
   }
 
+  var dataIsValid = true;
+
   const chartData = () => {
     if (studyProgressAnalysis != undefined) {
       const cohort = filterByCourseAndYear(studyProgressAnalysis, props.selectedBaseCourse[0].course, props.selectedCohort)[0].cohorts;
-      var lastCount = studyProgressAnalysis[1].cohorts[0];
-      var transitions = [];
-      var leavers = [];
-      
-      for (var i = 0; i < (cohort.length-1); i++) {
-        const studentCount = cohort[i];
-        transitions.push([i+1 + '. FS', i+2 + '. FS', studentCount]);
-        if (studentCount < lastCount) {
-          leavers.push([i+1 + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-studentCount]);
+      if (cohort === null) {
+        return [
+          ['From', 'To', 'Weight'],
+          ['Keine Daten vorhanden', 'Wähle eine andere Kohorte', 10]
+        ];
+      } else {
+        var lastCount = cohort[0] >= 0 ? cohort[0] : 0;
+        var transitions = [];
+        var leavers = [];
+        
+        for (var i = 0; i < (cohort.length-1); i++) {
+          const studentCount = cohort[i] >= 0 ? cohort[i] : 0;
+          transitions.push([i+1 + '. FS', i+2 + '. FS', studentCount]);
+          if (studentCount < lastCount) {
+            leavers.push([i+1 + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-studentCount]);
+          }
+          lastCount = studentCount;
         }
-        lastCount = studentCount;
+
+        transitions.push([cohort.length + '. FS', 'Absolventen', cohort[cohort.length-1]]);
+        //leavers.push([cohort.length + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-cohort[cohort.length-1]])
+
+        return [
+          ['From', 'To', 'Weight'],
+          ...transitions,
+          ...leavers,
+        ];
       }
-
-      transitions.push([cohort.length + '. FS', 'Absolventen', cohort[cohort.length-1]]);
-
-      return [
-        ['From', 'To', 'Weight'],
-        ...transitions,
-        ...leavers,
-      ];
     }
   }
 
