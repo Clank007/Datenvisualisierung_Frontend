@@ -39,7 +39,6 @@ const data = (sfData) => {
     const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN]
 
     const kohortenDataset = sfData.kohorten.map((kohorte,i) => {
-        console.log(kohorte);
         return {
             type: 'bar',
             label: kohorte.kohorte,
