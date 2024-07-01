@@ -20,7 +20,6 @@ function DashboardKennzahlen(props) {
     const fetchData = async () => {
       try {
         const standardPeriodOfStudyResult = await fetchStandardPeriodOfStudy();
-        console.log(standardPeriodOfStudyResult);
         setStandardPeriodOfStudy(standardPeriodOfStudyResult);
         setLoading(false);
       } catch (err) {
