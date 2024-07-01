@@ -17,8 +17,8 @@ function Header(props) {
 
   const showCompareSelect = location.pathname == '/admin/schwundberechnung';
   const showBaseSelect = location.pathname !='/admin/glossar';
-  const showYearSelect = location.pathname == '/admin/schwundberechnung' ||
-                         location.pathname == '/admin/studienverlauf';  
+  const showYearSelect = location.pathname == '/admin/schwundberechnung';
+  const showCohortSelect =  location.pathname == '/admin/studienverlauf';  
 
   /**
    * Function to get name (= name in sidebar) from current route.
@@ -129,6 +129,22 @@ function Header(props) {
               placeholder={"Jahr wählen..."}
               onChange={props.handleYearChange}
               defaultValue={props.yearsOptions[0]}
+            />
+          </React.Fragment>)
+          }
+          {showCohortSelect &&
+          (<React.Fragment>
+            <Navbar.Brand className="mr-2 ps-3" >
+              {"Kohorte:"}
+            </Navbar.Brand>
+            <Select
+              className="ps-3 pe-3"
+              isClearable={false}
+              isSearchable={true}
+              options={props.cohortOptions}
+              placeholder={"Kohorte wählen..."}
+              onChange={props.handleCohortChange}
+              defaultValue={props.cohortOptions[0]}
             />
           </React.Fragment>)
           }

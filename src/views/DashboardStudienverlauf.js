@@ -15,9 +15,9 @@ function DashboardStudienverlauf(props) {
         <Row>
           <Col xs="10">
             <Card className="card-chart">
-              <Card.Title as="h3" className="text-center pt-4">Studienverlauf {props.selectedYear.course} Kohorte {parseInt(props.selectedYear.year)-4}</Card.Title>
+              <Card.Title as="h3" className="text-center pt-4">Studienverlauf {props.selectedBaseCourse[0].course} Kohorte {props.selectedCohort}</Card.Title>
               <Card.Body>
-                <SankeyChart selectedYear={props.selectedYear} selectedBaseCourse={props.selectedBaseCourse}></SankeyChart>
+                <SankeyChart selectedCohort={props.selectedCohort} selectedBaseCourse={props.selectedBaseCourse}></SankeyChart>
               </Card.Body>
             </Card>
           </Col>

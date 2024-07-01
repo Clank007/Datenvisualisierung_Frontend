@@ -8,13 +8,11 @@ function filterByCourseAndYear(data, targetCourse, targetYear) {
     // Extract the year number using a regular expression
     const yearMatch = item.year.match(/\d{4}/);
     const year = yearMatch ? yearMatch[0] : null;
-    if (item.course === targetCourse && year === targetYear) console.log(item.course + targetCourse + year + targetYear);
     return item.course === targetCourse && year === targetYear;
   });
 }
 
 const SankeyChart = (props) => {
-  console.log(props);
   const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
   
   const [studyProgressAnalysis, setStudyProgressAnalysis] = useState(null);
@@ -46,9 +44,7 @@ const SankeyChart = (props) => {
 
   const chartData = () => {
     if (studyProgressAnalysis != undefined) {
-      const correctedYear = (parseInt(props.selectedYear.year)-4).toString();
-      const cohort = filterByCourseAndYear(studyProgressAnalysis, props.selectedYear.course, correctedYear)[0].cohorts;
-      console.log(cohort);
+      const cohort = filterByCourseAndYear(studyProgressAnalysis, props.selectedBaseCourse[0].course, props.selectedCohort)[0].cohorts;
       var lastCount = studyProgressAnalysis[1].cohorts[0];
       var transitions = [];
       var leavers = [];
