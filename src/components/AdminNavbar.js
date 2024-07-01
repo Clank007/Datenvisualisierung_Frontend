@@ -112,7 +112,6 @@ function Header(props) {
                   placeholder={"Studiengänge wählen..."}
                   hideSelectedOptions={true}
                   styles={customStyles}
-                  // isDisabled={!showCompareSelect}
               />
             </div>
           </React.Fragment>)
@@ -129,6 +128,7 @@ function Header(props) {
               options={props.yearsOptions}
               placeholder={"Jahr wählen..."}
               onChange={props.handleYearChange}
+              defaultValue={props.yearsOptions[0]}
             />
           </React.Fragment>)
           }

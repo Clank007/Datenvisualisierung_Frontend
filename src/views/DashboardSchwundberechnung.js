@@ -37,7 +37,7 @@ function DashboardSchwundberechnung(props) {
             <Card className="card-chart">
               <Card.Body>
                 <div>
-                  <SfStudentsComponent selectedBaseCourse={props.selectedBaseCourse} selectedCourses={props.selectedCourses}></SfStudentsComponent>
+                  <SfStudentsComponent selectedYear={props.selectedYear}></SfStudentsComponent>
                 </div>
               </Card.Body>
             </Card>

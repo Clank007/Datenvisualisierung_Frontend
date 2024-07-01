@@ -9,9 +9,17 @@ const ENDPOINT_YEARS = '/years';
 const ENDPOINT_COURSE_DATA = '/course-data';
 
 // Function to fetch reporting data
-async function fetchReportingData() {
+async function fetchReportingData(year, course) {
   try {
-        const response = await fetch(`${API_BASE_URL}${ENDPOINT_REPORTING_DATA}`);
+        let url = new URL(`${API_BASE_URL}${ENDPOINT_REPORTING_DATA}`);
+        let params = new URLSearchParams();
+
+        if (year) params.append('yearSemester', year);
+        if (course) params.append('courseShortenedName', course);
+
+        url.search = params.toString();
+        
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

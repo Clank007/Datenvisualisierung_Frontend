@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import routes from "../routes.js";
 
 import { schwundfaktorDaten } from '../charts/helperData';
-import { fetchCourseData } from "../util/api_calls";
+import { fetchCourseData, fetchReportingData } from "../util/api_calls";
 import SchwundfaktorFormat from "../charts/helperTypes";
 
 /**
@@ -20,12 +20,16 @@ function Admin() {
    * State variable for selected base course. 
    * Passed to the components in each route in getRoutes().
    */
-  const [selectedBaseCourse, setSelectedBaseCourses] = React.useState(schwundfaktorDaten[6]);
+  const [selectedBaseCourse, setSelectedBaseCourse] = React.useState([]);
   /**
    * State variable for selected courses in comparison.
    * Passed to the components in each route in getRoutes().
    */
   const [selectedCourses, setSelectedCourses] = React.useState([]);
+  /**
+   * State variable for selected year.
+   * Passed to the components in each route in getRoutes().
+   */
   const [selectedYear, setSelectedYear] = React.useState(null);
  
   const mainPanel = React.useRef(null);
@@ -55,7 +59,7 @@ function Admin() {
     });
   };
 
-  // API Calls
+  // API Calls for filters
   const [courseData, setCourseData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -66,6 +70,10 @@ function Admin() {
       try {
         const courseDataResult = await fetchCourseData();
         setCourseData(courseDataResult);
+        //fetch initial selectedBaseCourse
+        const initialBaseCourse = await fetchReportingData(undefined, courseDataResult[0].shortened);
+        setSelectedBaseCourse(initialBaseCourse);
+        setSelectedYear(initialBaseCourse[0]);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -101,12 +109,10 @@ function Admin() {
    * Maps options from yearsData to value and label fields.
    * This is passed down to AdminNavbar.
    */
-  const yearsOptions = selectedBaseCourse.years
-    .filter((year, index) => selectedBaseCourse.faktor[index] !== null)
-    .map((year, index) => ({
-      value: String(year),
-      label: year,
-      data: null,
+  const yearsOptions = selectedBaseCourse.map((entry) => ({
+    value: String(entry.year),
+    label: entry.year,
+    data: null,
   }));
 
 
@@ -118,10 +124,19 @@ function Admin() {
    */
   const handleBaseCourseChange = (selOption) => {
     if (selOption !== null) {
-      setSelectedBaseCourses(mapBECourseToTempData(selOption.label));
-      // Could also just be a constant array since the years are the same for all courses as of now
-      setYearsData(mapBECourseToTempData(selOption.label));
-      setSelectedYear(null);
+      //Set selected base course
+      fetchReportingData(undefined, selOption.label)
+        .then((data) => {
+          setSelectedBaseCourse(data);
+      
+          //Set available years based on selected base course
+          setYearsData(selectedBaseCourse.map((entry) => entry.year));
+          //Reset selected year
+          setSelectedYear(selectedBaseCourse[0]);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
     }
   };
 
@@ -132,31 +147,24 @@ function Admin() {
    */
   const handleYearChange = (selOption) => {
     if (selOption !== null) {
-      setSelectedYear(selOption.label);
+      const selYear = selectedBaseCourse.find((entry) => entry.year === selOption.label);
+      if (selYear !== undefined) {
+        setSelectedYear(selYear);
+      }
     }
   };
 
-
   /**
-   * Selects the corresponding shrinkageFactor data from the current constants by the selected course from BE
-   * @param {string} beCourse 
-   * @returns {SchwundfaktorFormat}
-   */
-  function mapBECourseToTempData(beCourse) {
-    return schwundfaktorDaten.find((entry) => entry.course === beCourse );
-  }
-
-  /**
-   * Maps options from schwundfaktorDaten to value and label fields.
+   * Maps options from courseData to value and label fields for select option.
    * This is passed down to AdminNavbar.
    */
   const coursesOptions = courseData
-    .filter((course) => course.shortened !== selectedBaseCourse.course)
-    .map((course, index) => ({
-        value: String(index),
-        label: course.shortened,
-        labelLong: course.shortened + " - " + course.course,
-    }));
+        .filter((course) => course.shortened !== selectedBaseCourse[0].course)
+        .map((course, index) => ({
+          value: String(index),
+          label: course.shortened,
+          labelLong: course.shortened + " - " + course.course,
+  }));
 
   /**
    * Function to handle the change in the comparative courses Select component.
@@ -165,12 +173,27 @@ function Admin() {
    * @param selOption 
    */
   function handleCoursesChange(selOptions) {
-      if (selOptions !== null) {
-          const selCourses = selOptions.map((selOption) => mapBECourseToTempData(selOption.label));
-          setSelectedCourses(selCourses);
-      } else {
-          setSelectedCourses([]);
-      }
+    if (selOptions !== null) {
+        //One giant call and throw not needed away instead of multiple single calls
+        fetchReportingData(undefined, undefined)
+          .then((data) => {
+            const selCoursesNames = selOptions.map((selection) => selection.label);
+            let selCourses = data.filter((entry) => selCoursesNames.includes(entry.course));
+            // Sort selCourses by "course" and then by "year" in ascending order
+            selCourses.sort((a, b) => {
+              if (a.course < b.course) return -1;
+              if (a.course > b.course) return 1;
+              // If courses are equal, compare by year
+              return a.year - b.year;
+            });
+            setSelectedCourses(selCourses);
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+    } else {
+      setSelectedCourses([]);
+    }
   };
 
   return (

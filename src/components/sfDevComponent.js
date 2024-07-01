@@ -2,8 +2,8 @@ import { Col, Row } from 'react-bootstrap';
 import '../assets/css/sfDevComponent.css';
 import sfDevChart from '../charts/sfDevChart';
 
-const SfDevComponent = (props: any) => {
-  const chartData = sfDevChart({ sfData: props.selectedBaseCourse });
+const SfDevComponent = (props) => {
+  const chartData = sfDevChart(props.selectedBaseCourse);
 
   return (
     <div className='sfDevContainer'>
