@@ -73,6 +73,7 @@ function Admin() {
         //fetch initial selectedBaseCourse
         const initialBaseCourse = await fetchReportingData(undefined, courseDataResult[0].shortened);
         setSelectedBaseCourse(initialBaseCourse);
+        setSelectedYear(initialBaseCourse[0]);
         setLoading(false);
       } catch (err) {
         setError(err.message);

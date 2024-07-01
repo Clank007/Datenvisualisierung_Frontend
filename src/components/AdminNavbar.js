@@ -128,6 +128,7 @@ function Header(props) {
               options={props.yearsOptions}
               placeholder={"Jahr wählen..."}
               onChange={props.handleYearChange}
+              defaultValue={props.yearsOptions[0]}
             />
           </React.Fragment>)
           }

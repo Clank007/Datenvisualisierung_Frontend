@@ -37,13 +37,13 @@ ChartJS.register(
 
 const data = (sfData) => {
     const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN]
-    console.log(sfData);
 
     const kohortenDataset = sfData.kohorten.map((kohorte,i) => {
+        console.log(kohorte);
         return {
             type: 'bar',
             label: kohorte.kohorte,
-            data: kohorte.netStudents,
+            data: kohorte.netStudents.map((students) => (students === -1) ? null : students),
             backgroundColor: "rgba("+colors[i]+",0.7)",
             borderColor: "rgba("+colors[i]+",0.7)",
             datalabels: {
@@ -57,7 +57,7 @@ const data = (sfData) => {
         label: 'Mittlere Übergangsquote',
         backgroundColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
         borderColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
-        data: sfData.meanSuccess,
+        data: sfData.meanSuccess.map((rate) => (rate === -1) ? null : rate),
         yAxisID: 'yAxis',
         datalabels: {
             display: true,
@@ -81,26 +81,6 @@ const data = (sfData) => {
             ...kohortenDataset,
         ],
     };
-};
-
-function detailedTooltipLabel(context) {
-    // let label = context.dataset.label || '';
-    //only change bar tooltip labels
-    // if (context.dataset.type === 'bar') {
-    //     return label
-    // };
-    // let label = context.dataset.label || '';
-    //                 console.log(context);
-    //                 if (context.dataset.type === 'bar') {
-    //                     return 'akad. Jahr: ' + context.raw;
-    //                 };
-    //                 if (label) {
-    //                     label += ': ';
-    //                 };
-    //                 if (context.parsed.y !== null) {
-    //                     label += context.parsed.y;
-    //                 };
-    //                 return label;
 };
 
 const options = (sfData) => ({
@@ -147,30 +127,6 @@ const options = (sfData) => ({
               weight: 'normal',
             }
         },
-        // tooltip: {
-        //     callbacks: {
-        //         label: function(context: any) {
-        //             let label = context.dataset.label || '';
-        //             console.log(context);
-        //             if (context.dataset.type === 'bar') {
-        //                 return 'akad. Jahr: ' + context.raw;
-        //             };
-        //             if (label) {
-        //                 label += ': ';
-        //             };
-        //             if (context.parsed.y !== null) {
-        //                 label += context.parsed.y;
-        //             };
-        //             return label;
-        //         },
-        //         afterLabel: function(context: any) {
-        //             if (context.dataset.type === 'bar') {
-        //                 return 'Testtext';
-        //             };
-        //             return '';
-        //         },
-        //     },
-        // },
     },
 });
 
