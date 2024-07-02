@@ -46,8 +46,26 @@ const SankeyChart = (props) => {
       setNoDataMessage(`Für den Studiengang ${props.selectedBaseCourse?.[0]?.course} im Jahr ${props.selectedCohort} liegen keine Daten vor.`);
     } else {
       setNoDataMessage('');
+      const cohort = filteredData[0].cohorts;
+      const ersteKohorte = cohort[0] >= 0 ? cohort[0] : 0;
+      const anzahlAbsolventen = cohort[cohort.length - 1];
+      let lastCount = ersteKohorte;
+      let anzahlAbbrecher = 0;
+
+      for (let i = 0; i < cohort.length - 1; i++) {
+        const studentCount = cohort[i] >= 0 ? cohort[i] : 0;
+        if (studentCount < lastCount) {
+          const leaverCount = lastCount - studentCount;
+          anzahlAbbrecher += leaverCount;
+        }
+        lastCount = studentCount;
+      }
+
+      props.setErsteKohorte(ersteKohorte);
+      props.setAnzahlAbbrecher(anzahlAbbrecher);
+      props.setAnzahlAbsolventen(anzahlAbsolventen);
     }
-  }, [studyProgressAnalysis, props.selectedBaseCourse, props.selectedCohort]);
+  }, [studyProgressAnalysis, props.selectedBaseCourse, props.selectedCohort, props]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -68,20 +86,25 @@ const SankeyChart = (props) => {
   }
 
   const cohort = filteredData[0].cohorts;
-  let lastCount = cohort[0] >= 0 ? cohort[0] : 0;
+  const ersteKohorte = cohort[0] >= 0 ? cohort[0] : 0;
+  const anzahlAbsolventen = cohort[cohort.length - 1];
+  let lastCount = ersteKohorte;
   let transitions = [];
   let leavers = [];
+  let anzahlAbbrecher = 0;
 
   for (let i = 0; i < cohort.length - 1; i++) {
     const studentCount = cohort[i] >= 0 ? cohort[i] : 0;
     transitions.push([`${i + 1}. FS`, `${i + 2}. FS`, studentCount]);
     if (studentCount < lastCount) {
-      leavers.push([`${i + 1}. FS`, 'Fachwechsel oder Studienabbruch', lastCount - studentCount]);
+      const leaverCount = lastCount - studentCount;
+      leavers.push([`${i + 1}. FS`, 'Fachwechsel oder Studienabbruch', leaverCount]);
+      anzahlAbbrecher += leaverCount;
     }
     lastCount = studentCount;
   }
 
-  transitions.push([`${cohort.length}. FS`, 'Absolventen', cohort[cohort.length - 1]]);
+  transitions.push([`${cohort.length}. FS`, 'Absolventen', anzahlAbsolventen]);
 
   for (let i = 0; i < cohort.length; i++) {
     colors.push(blue);
@@ -94,12 +117,16 @@ const SankeyChart = (props) => {
       iterations: 0,
       height: 1500,
       link: { colorMode: 'gradient' },
+      label: {
+        alignment: 'start'
+      },
       node: {
         colorMode: 'fixed',
         colors: colors,
         nodePadding: 50,
         label: {
-          fontSize: 20,
+          alignment: "start",
+          fontSize: 18,
         },
       },
     },
