@@ -50,7 +50,7 @@ const SankeyChart = (props) => {
       const cohort = filterByCourseAndYear(studyProgressAnalysis, props.selectedBaseCourse[0].course, props.selectedCohort)[0].cohorts;
       if (cohort === null) {
         return [
-          ['From', 'To', 'Weight'],
+          ['From', 'To', 'Anzahl'],
           ['Keine Daten vorhanden', 'Wähle eine andere Kohorte', 10]
         ];
       } else {
@@ -71,7 +71,7 @@ const SankeyChart = (props) => {
         //leavers.push([cohort.length + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-cohort[cohort.length-1]])
 
         return [
-          ['From', 'To', 'Weight'],
+          ['From', 'To', 'Anzahl'],
           ...transitions,
           ...leavers,
         ];
