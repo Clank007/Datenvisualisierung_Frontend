@@ -14,8 +14,12 @@ function filterByCourseAndYear(data, targetCourse, targetYear) {
 }
 
 const SankeyChart = (props) => {
-  const colors = ['#32B4C8','#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#32B4C8', '#6FA53C'];
-  
+  const blue = '#32B4C8';
+  const green = '#6FA53C';
+  const purple = '#7764A5';
+
+  let colors = [];
+
   const [studyProgressAnalysis, setStudyProgressAnalysis] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,32 +47,45 @@ const SankeyChart = (props) => {
     return <div>Error: {error}</div>;
   }
 
-  var dataIsValid = true;
+  const filterByCourseAndYear = (data, targetCourse, targetYear) => {
+    return data.filter(item => {
+      const yearMatch = item.year.match(/\d{4}/);
+      const year = yearMatch ? yearMatch[0] : null;
+      return item.course === targetCourse && year === targetYear;
+    });
+  };
 
   const chartData = () => {
-    if (studyProgressAnalysis != undefined) {
+    if (studyProgressAnalysis !== undefined) {
       const cohort = filterByCourseAndYear(studyProgressAnalysis, props.selectedBaseCourse[0].course, props.selectedCohort)[0].cohorts;
+
       if (cohort === null) {
         return [
           ['From', 'To', 'Anzahl'],
           ['Keine Daten vorhanden', 'Wähle eine andere Kohorte', 10]
         ];
       } else {
-        var lastCount = cohort[0] >= 0 ? cohort[0] : 0;
-        var transitions = [];
-        var leavers = [];
-        
-        for (var i = 0; i < (cohort.length-1); i++) {
+        let lastCount = cohort[0] >= 0 ? cohort[0] : 0;
+        let transitions = [];
+        let leavers = [];
+
+        for (let i = 0; i < cohort.length - 1; i++) {
           const studentCount = cohort[i] >= 0 ? cohort[i] : 0;
-          transitions.push([i+1 + '. FS', i+2 + '. FS', studentCount]);
+          transitions.push([`${i + 1}. FS`, `${i + 2}. FS`, studentCount]);
           if (studentCount < lastCount) {
-            leavers.push([i+1 + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-studentCount]);
+            leavers.push([`${i + 1}. FS`, 'Fachwechsel oder Studienabbruch', lastCount - studentCount]);
           }
           lastCount = studentCount;
         }
 
-        transitions.push([cohort.length + '. FS', 'Absolventen', cohort[cohort.length-1]]);
-        //leavers.push([cohort.length + '. FS', 'Fachwechsel oder Studienabbruch', lastCount-cohort[cohort.length-1]])
+        transitions.push([`${cohort.length}. FS`, 'Absolventen', cohort[cohort.length - 1]]);
+
+        // Erstelle das colors-Array basierend auf der Länge von cohort und den Anforderungen
+        for (let i = 0; i < cohort.length; i++) {
+          colors.push(blue); // Alle Links zu cohort sind blau
+        }
+        colors.push(green); // Der Link zu Absolventen ist grün
+        colors.push(purple); // Der Link zu Studienabbruch oder Fachwechsel ist lila
 
         return [
           ['From', 'To', 'Anzahl'],
@@ -77,7 +94,7 @@ const SankeyChart = (props) => {
         ];
       }
     }
-  }
+  };
 
   const chartOptions = {
     sankey: {
@@ -89,13 +106,13 @@ const SankeyChart = (props) => {
         colors: colors,
         nodePadding: 50,
         label: {
-          fontSize: 20, // Increase this value for larger labels
+          fontSize: 20,
         },
       },
     },
     tooltip: {
       textStyle: {
-        fontSize: 16, // Decrease this value for smaller tooltips
+        fontSize: 16,
       },
     },
   };
@@ -114,5 +131,6 @@ const SankeyChart = (props) => {
     </div>
   );
 };
+
 
 export default SankeyChart;
