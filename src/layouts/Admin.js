@@ -69,6 +69,8 @@ function Admin() {
     const fetchData = async () => {
       try {
         const courseDataResult = await fetchCourseData();
+        //Filter ISS out since it has no data
+        courseDataResult.splice(courseDataResult.findIndex((course) => course.shortened === "ISS"), 1);
         setCourseData(courseDataResult);
         //fetch initial selectedBaseCourse
         const initialBaseCourse = await fetchReportingData(undefined, courseDataResult[0].shortened);
@@ -128,6 +130,7 @@ function Admin() {
       fetchReportingData(undefined, selOption.label)
         .then((data) => {
           setSelectedBaseCourse(data);
+          console.log(data);
       
           //Set available years based on selected base course
           setYearsData(selectedBaseCourse.map((entry) => entry.year));
@@ -159,7 +162,7 @@ function Admin() {
    * This is passed down to AdminNavbar.
    */
   const coursesOptions = courseData
-        .filter((course) => course.shortened !== selectedBaseCourse[0].course)
+        .filter((course) => ( course.shortened !== selectedBaseCourse[0].course))
         .map((course, index) => ({
           value: String(index),
           label: course.shortened,
