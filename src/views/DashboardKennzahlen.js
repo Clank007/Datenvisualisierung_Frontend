@@ -40,8 +40,7 @@ function DashboardKennzahlen(props) {
   }
 
   const currentCourseOfStudy = standardPeriodOfStudy.findLast(obj => {
-    //return obj.courseOfStudy == props.selectedBaseCourse.course;
-    return obj.courseOfStudy == "DSI";
+    return obj.courseOfStudy == props.selectedBaseCourse[0].course;
   })
 
   return (
