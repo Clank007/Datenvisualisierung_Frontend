@@ -9,15 +9,13 @@ import { Chart as ChartJS,
          Legend, 
          Filler } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import SchwundfaktorFormat from './helperTypes';
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Col, Row } from 'react-bootstrap';
 import FAQDictionary from '../util/FAQDictionary';
 import Infotip from '../components/Infotip';
-const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
-
+const {RGB_CD_BLAU, RGB_VALS_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN} = require('../util/color_constants');
 
 // register imported plugins from chart.js
 ChartJS.register(
@@ -150,7 +148,7 @@ const sfDevChart = (sfData) => {
   };
 
   useEffect(() => {
-      //console.log('Component has mounted');
+      console.log("Component has mounted with sfData:", sfData);
   }, []);
 
   if (sfData.length > 0) {
@@ -193,6 +191,5 @@ const sfDevChart = (sfData) => {
     );
   }
 };
-  
 
 export default sfDevChart;

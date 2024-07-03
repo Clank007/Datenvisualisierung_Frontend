@@ -47,6 +47,7 @@ const SankeyChart = (props) => {
     } else {
       setNoDataMessage('');
       const cohort = filteredData[0].cohorts;
+      console.log(cohort);
       const ersteKohorte = cohort[0] >= 0 ? cohort[0] : 0;
       const anzahlAbsolventen = cohort[cohort.length - 1];
       let lastCount = ersteKohorte;

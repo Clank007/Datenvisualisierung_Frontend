@@ -9,16 +9,12 @@ import { Chart as ChartJS,
     Legend, 
     Filler,
     Colors } from 'chart.js';
-import SchwundfaktorFormat from './helperTypes';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { schwundfaktorDaten } from "./helperData";
 import React, { useEffect, useRef } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { BsExclamationTriangleFill, BsFillExclamationTriangleFill } from "react-icons/bs";
 import FAQDictionary from "../util/FAQDictionary";
 import Infotip from "../components/Infotip";
-import { useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 const {RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT} = require('../util/color_constants');
 
@@ -43,25 +39,21 @@ const data = (sfData) => {
     var colors = [RGB_CD_BLAU, RGB_CD_TUERKIS, RGB_CD_GRUEN, RGB_CD_HELLGRUEN, RGB_CD_GELB, RGB_CD_ORANGE, RGB_CD_ROT, RGB_CD_VIOLETT]
 
     const years = [...new Set(sfData.map(row => row.year))].sort();
-    //Proudly stolen from Copilot; if this fails, ask him
     const groupedByCourse = sfData.reduce((accumulator, current) => {
-        // If the course doesn't exist in the accumulator, initialize it with an empty array
         if (!accumulator[current.course]) {
           accumulator[current.course] = [];
         }
-        // Push the current object to the array for the corresponding course
         accumulator[current.course].push(current);
         return accumulator;
       }, {});
 
     var sfDatasets = Object.entries(groupedByCourse).map(([course, data], i) => {
-        //Log if all datasets have the same length
         dataIncomplete = (data.map(entry => entry.year).length < years.length) ? true : dataIncomplete;
         return ({
             label: data[0].course,
             data: data.map(entry => ({ x: entry.year, y: entry.attrition_rate})),
             pointRadius: 4,
-            borderColor: colors[i % colors.length], // Use modulo to avoid going out of bounds
+            borderColor: colors[i % colors.length],
             backgroundColor: colors[i % colors.length],
             plugins: {
                 datalabels: {
@@ -71,7 +63,6 @@ const data = (sfData) => {
         });
     });
 
-    // add ideal line with data values 1 to datasets
     const ideallinie = {
         label: 'Idealwert',
         data: Array(years.length).fill(1),
@@ -180,8 +171,11 @@ const sfCoursesChart = (selectedCourses, selectedBaseCourse) => {
         }
     };
 
+    useEffect(() => {
+        console.log("Component has mounted with combinedData:", combinedData);
+    }, [combinedData]);
+
     if (combinedData.length === 0) {
-        //return placeholder
         return (
             <React.Fragment>
                 <Line
@@ -190,7 +184,6 @@ const sfCoursesChart = (selectedCourses, selectedBaseCourse) => {
                 />
             </React.Fragment>
         );
-
     } else {
         return (
             <React.Fragment>

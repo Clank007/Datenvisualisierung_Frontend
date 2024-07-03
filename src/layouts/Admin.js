@@ -122,7 +122,7 @@ function Admin() {
 
   const cohortOptions = 
     studyProgressData
-      .filter(item => item.course === selectedBaseCourse[0].course && item.cohorts !== null)
+      .filter(item => item?.course === selectedBaseCourse[0]?.course && item?.cohorts !== null)
       .map(item => {
         const yearMatch = item.year.match(/\d{4}/);
         return yearMatch ? yearMatch[0] : null;
@@ -134,7 +134,7 @@ function Admin() {
       })); 
 
   if (selectedCohort == null) {
-    setSelectedCohort(cohortOptions[0].label)
+    setSelectedCohort(cohortOptions[0]?.label)
   }
   
 
@@ -185,11 +185,11 @@ function Admin() {
    * This is passed down to AdminNavbar.
    */
   const coursesOptions = courseData
-        .filter((course) => course.shortened !== selectedBaseCourse[0].course)
+        .filter((course) => course?.shortened !== selectedBaseCourse[0]?.course)
         .map((course, index) => ({
           value: String(index),
-          label: course.shortened,
-          labelLong: course.shortened + " - " + course.course,
+          label: course?.shortened,
+          labelLong: course?.shortened + " - " + course?.course,
   }));
 
   /**

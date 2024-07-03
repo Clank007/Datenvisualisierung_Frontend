@@ -84,7 +84,7 @@ function DashboardStudienverlauf(props) {
             </Card>
           </Col>
 
-          <Col lg="4" sm="3">
+          <Col lg="3" sm="3">
             <Card>
               <Card.Body>
                 <Row>
@@ -129,10 +129,10 @@ function DashboardStudienverlauf(props) {
           </Col>
         </Row>
         <Row>
-          <Col xs="10">
+          <Col xs="9">
             <Card className="card-chart">
               <Card.Title as="h3" className="text-center pt-4">
-                Studienverlauf {props.selectedBaseCourse[0].course} Kohorte {props.selectedCohort}
+                Studienverlauf {props.selectedBaseCourse[0]?.course} Kohorte {props.selectedCohort}
               </Card.Title>
               <Card.Body>
                 <SankeyChart
