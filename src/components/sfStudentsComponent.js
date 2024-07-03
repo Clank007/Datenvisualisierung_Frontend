@@ -13,7 +13,7 @@ import { Chart as ChartJS,
          BarController,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import html2canvas from 'html2canvas';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { RGB_VALS_CD_BLEND_TUERKIS_GRUEN } from '../util/color_constants';
@@ -35,16 +35,24 @@ ChartJS.register(
     ChartDataLabels
 );
 
-const data = (sfData) => {
-    const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN]
+const prepareChartData = (sfData) => {
+    if (!sfData || !sfData.semesters || !sfData.meanSuccess || !sfData.kohorten) {
+        console.log("Empty or invalid sfData", sfData);
+        return {
+            labels: [],
+            datasets: []
+        };
+    }
 
-    const kohortenDataset = sfData.kohorten.map((kohorte,i) => {
+    const colors = [RGB_VALS_CD_TUERKIS, RGB_VALS_CD_BLEND_TUERKIS_GRUEN, RGB_VALS_CD_GRUEN];
+
+    const kohortenDataset = sfData.kohorten.map((kohorte, i) => {
         return {
             type: 'bar',
             label: kohorte.kohorte,
-            data: kohorte.netStudents.map((students) => (students === -1) ? null : students),
-            backgroundColor: "rgba("+colors[i]+",0.7)",
-            borderColor: "rgba("+colors[i]+",0.7)",
+            data: kohorte.netStudents.map((students) => (students === -1 ? null : students)),
+            backgroundColor: `rgba(${colors[i]}, 0.7)`,
+            borderColor: `rgba(${colors[i]}, 0.7)`,
             datalabels: {
                 display: false,
             },
@@ -54,9 +62,9 @@ const data = (sfData) => {
     const meanSuccessDataset = {
         type: 'line',
         label: 'Mittlere Übergangsquote',
-        backgroundColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
-        borderColor: "rgba("+RGB_VALS_CD_BLAU+",1)",
-        data: sfData.meanSuccess.map((rate) => (rate === -1) ? null : rate),
+        backgroundColor: `rgba(${RGB_VALS_CD_BLAU}, 1)`,
+        borderColor: `rgba(${RGB_VALS_CD_BLAU}, 1)`,
+        data: sfData.meanSuccess.map((rate) => (rate === -1 ? null : rate)),
         yAxisID: 'yAxis',
         datalabels: {
             display: true,
@@ -82,7 +90,7 @@ const data = (sfData) => {
     };
 };
 
-const options = (sfData) => ({
+const prepareChartOptions = (sfData) => ({
     scales: {
         x: {
             stacked: true,
@@ -131,6 +139,8 @@ const options = (sfData) => ({
 
 const SfStudentsComponent = (props) => {
     const chartRef = useRef(null);
+    const [chartData, setChartData] = useState(null);
+    const [chartOptions, setChartOptions] = useState(null);
 
     const downloadChart = () => {
         const chartElement = chartRef.current;
@@ -145,45 +155,49 @@ const SfStudentsComponent = (props) => {
     };
 
     useEffect(() => {
-        //console.log('Component has mounted');
-    }, []);
+        if (props.selectedYear) {
+            const updatedData = prepareChartData(props.selectedYear);
+            const updatedOptions = prepareChartOptions(props.selectedYear);
+            setChartData(updatedData);
+            setChartOptions(updatedOptions);
+        } else {
+            setChartData(null);
+            setChartOptions(null);
+        }
+    }, [props.selectedYear]);
 
-    if (props.selectedYear === null) {
-        //return placeholder chart
-        return (
-            <React.Fragment>
-                <Line
-                    data={{ labels: [2020, 2021, 2022, 2023, 2024], datasets: [{data: Array(5)}]}}
-                    options={options({course: 'Kurs', year: '2020'})}
-                />
-            </React.Fragment>
-        );
-    } else {
-        return (
-            <React.Fragment>
+    return (
+        <React.Fragment>
+            {chartData && chartOptions ? (
                 <div ref={chartRef}>
                     <Chart 
                         type='bar' 
-                        data={data(props.selectedYear)} 
-                        options={options(props.selectedYear)} 
+                        data={chartData} 
+                        options={chartOptions} 
                     />
                 </div>
-                <button 
-                    onClick={downloadChart}
-                    style={{
-                        position: 'absolute',
-                        bottom: 10,
-                        right: 10,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer'
-                    }}
-                    title="Download Chart"
-                >
-                    <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
-                </button>
-            </React.Fragment>
-        )};
-}
+            ) : (
+                <Line
+                    data={{ labels: [2020, 2021, 2022, 2023, 2024], datasets: [{data: Array(5)}]}}
+                    options={prepareChartOptions({course: 'Kurs', year: '2020'})}
+                />
+            )}
+            <button 
+                onClick={downloadChart}
+                style={{
+                    position: 'absolute',
+                    bottom: 10,
+                    right: 10,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+                title="Download Chart"
+            >
+                <i className="fas fa-download" style={{ fontSize: '16px', color: 'grey' }}></i>
+            </button>
+        </React.Fragment>
+    );
+};
 
 export default SfStudentsComponent;

@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import routes from "../routes.js";
 
 import { schwundfaktorDaten } from '../charts/helperData';
-import { fetchCourseData, fetchReportingData } from "../util/api_calls";
+import { fetchCourseData, fetchReportingData, fetchStudyProgressAnalysis } from "../util/api_calls";
 import SchwundfaktorFormat from "../charts/helperTypes";
 
 /**
@@ -31,6 +31,7 @@ function Admin() {
    * Passed to the components in each route in getRoutes().
    */
   const [selectedYear, setSelectedYear] = React.useState(null);
+  const [selectedCohort, setSelectedCohort] = React.useState(null);
  
   const mainPanel = React.useRef(null);
   /**
@@ -48,7 +49,8 @@ function Admin() {
             element={<prop.component 
               selectedBaseCourse={selectedBaseCourse} 
               selectedCourses={selectedCourses}
-              selectedYear={selectedYear}/>
+              selectedYear={selectedYear}
+              selectedCohort={selectedCohort}/>
             }
             key={key}
           />
@@ -64,6 +66,7 @@ function Admin() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [yearsData, setYearsData] = useState([]);
+  const [studyProgressData, setStudyProgressData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +75,8 @@ function Admin() {
         //Filter ISS out since it has no data
         courseDataResult.splice(courseDataResult.findIndex((course) => course.shortened === "ISS"), 1);
         setCourseData(courseDataResult);
+        const studyProgressResult = await fetchStudyProgressAnalysis();
+        setStudyProgressData(studyProgressResult);
         //fetch initial selectedBaseCourse
         const initialBaseCourse = await fetchReportingData(undefined, courseDataResult[0].shortened);
         setSelectedBaseCourse(initialBaseCourse);
@@ -117,6 +122,23 @@ function Admin() {
     data: null,
   }));
 
+  const cohortOptions = 
+    studyProgressData
+      .filter(item => item?.course === selectedBaseCourse[0]?.course && item?.cohorts !== null)
+      .map(item => {
+        const yearMatch = item.year.match(/\d{4}/);
+        return yearMatch ? yearMatch[0] : null;
+      })
+      .filter(year => year !== null) // Remove any null values
+      .map((year) => ({
+        value: year,
+        label:year
+      })); 
+
+  if (selectedCohort == null) {
+    setSelectedCohort(cohortOptions[0]?.label)
+  }
+  
 
   /**
    * Function to handle the change in the base course Select component.
@@ -157,16 +179,20 @@ function Admin() {
     }
   };
 
+  const handleCohortChange = (selOption) => {
+    setSelectedCohort(selOption.label);
+  }
+
   /**
    * Maps options from courseData to value and label fields for select option.
    * This is passed down to AdminNavbar.
    */
   const coursesOptions = courseData
-        .filter((course) => ( course.shortened !== selectedBaseCourse[0].course))
+        .filter((course) => course?.shortened !== selectedBaseCourse[0]?.course)
         .map((course, index) => ({
           value: String(index),
-          label: course.shortened,
-          labelLong: course.shortened + " - " + course.course,
+          label: course?.shortened,
+          labelLong: course?.shortened + " - " + course?.course,
   }));
 
   /**
@@ -208,6 +234,7 @@ function Admin() {
               baseCourseOptions={baseCourseOptions} handleBaseCourseChange={handleBaseCourseChange}
               coursesOptions={coursesOptions} handleCoursesChange={handleCoursesChange}
               yearsOptions={yearsOptions} handleYearChange={handleYearChange}
+              cohortOptions={cohortOptions} handleCohortChange={handleCohortChange}
           />
           <div className="content">
             <Routes>{getRoutes(routes)}</Routes>
