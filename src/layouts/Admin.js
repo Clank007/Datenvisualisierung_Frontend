@@ -72,6 +72,8 @@ function Admin() {
     const fetchData = async () => {
       try {
         const courseDataResult = await fetchCourseData();
+        //Filter ISS out since it has no data
+        courseDataResult.splice(courseDataResult.findIndex((course) => course.shortened === "ISS"), 1);
         setCourseData(courseDataResult);
         const studyProgressResult = await fetchStudyProgressAnalysis();
         setStudyProgressData(studyProgressResult);
@@ -150,6 +152,7 @@ function Admin() {
       fetchReportingData(undefined, selOption.label)
         .then((data) => {
           setSelectedBaseCourse(data);
+          console.log(data);
       
           //Set available years based on selected base course
           setYearsData(selectedBaseCourse.map((entry) => entry.year));
