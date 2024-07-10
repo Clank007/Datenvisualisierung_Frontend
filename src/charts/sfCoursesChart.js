@@ -165,7 +165,7 @@ const sfCoursesChart = (selectedCourses, selectedBaseCourse) => {
             html2canvas(chartElement).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
-                link.download = 'schwundfaktor_vergleich.png';
+                link.download = 'schwundfaktor_vergleich_' + selectedBaseCourse[0].course + '.png';
                 link.click();
             });
         }

@@ -148,7 +148,7 @@ const SfStudentsComponent = (props) => {
             html2canvas(chartElement).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
-                link.download = 'schwundfaktor_berechnung.png';
+                link.download = 'schwundfaktor_berechnung_' + props.selectedYear.course + '_' + props.selectedYear.year + '.png';
                 link.click();
             });
         }

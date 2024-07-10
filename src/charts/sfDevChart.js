@@ -141,7 +141,7 @@ const sfDevChart = (sfData) => {
         html2canvas(chartElement).then(canvas => {
             const link = document.createElement('a');
             link.href = canvas.toDataURL('image/png');
-            link.download = 'schwundfaktor_verlauf.png';
+            link.download = 'schwundfaktor_verlauf_'+ sfData[0].course + '.png';
             link.click();
         });
     }
